@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background relative border-t border-white/5 pt-16 pb-8 overflow-hidden">
+    <footer className="bg-background relative border-t border-foreground/5 dark:border-white/5 pt-16 pb-8 overflow-hidden">
       {/* Footer Ambient Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 border-t border-foreground/5 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-muted-foreground font-medium flex items-center gap-2">
             <Copyright className="w-4 h-4 shrink-0" /> {currentYear} XAAS by Delvare MNC. All Rights Reserved.
           </p>
