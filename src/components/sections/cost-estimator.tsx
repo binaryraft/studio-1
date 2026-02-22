@@ -245,7 +245,14 @@ const CostEstimatorSection = () => {
               <span className="text-3xl font-black text-foreground">{finalAmount}</span>
             </div>
           </div>
-          <Button className="w-full font-bold mt-4" size="lg" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+          <Button
+            className="w-full font-bold mt-4"
+            size="lg"
+            onClick={() => {
+              const message = `I just used the AI Estimator for a ${pricingBase[type].label}. \n\nDetails:\n- Project: ${pricingBase[type].label}\n- Complexity: ${complexity.charAt(0).toUpperCase() + complexity.slice(1)}\n- Estimate: ${finalAmount}\n\nI would like to discuss this project further.`;
+              window.dispatchEvent(new CustomEvent('delvare:autofill', { detail: { message } }));
+            }}
+          >
             Book Consultation
           </Button>
         </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, type FormEvent } from 'react';
 import { getContactsAction, deleteContactAction, markAsReadAction, getEstimationsAction, deleteEstimationAction, markEstimationAsReadAction, type Contact, type Estimation } from '@/app/actions';
+import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -161,9 +162,8 @@ export default function AdminPage() {
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
         <Card className="w-full max-w-sm">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 flex items-center gap-3 justify-center">
+            <div className="mx-auto mb-4 flex items-center justify-center scale-125">
               <Logo />
-              <span className="font-bold text-xl">Delvare</span>
             </div>
             <CardTitle>Admin Panel</CardTitle>
             <CardDescription>Enter password to access dashboard</CardDescription>

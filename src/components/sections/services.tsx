@@ -200,7 +200,15 @@ const ServicesSection = () => {
                         )}
                       </div>
                     </div>
-                    <Button size="icon" className="rounded-full w-12 h-12 bg-foreground/5 dark:bg-white/5 hover:bg-emerald-500 text-foreground dark:text-white dark:hover:text-white hover:text-white border border-foreground/10 dark:border-white/10 transition-all duration-300 group-hover:scale-110">
+                    <Button
+                      size="icon"
+                      onClick={() => {
+                        window.dispatchEvent(new CustomEvent('delvare:autofill', {
+                          detail: { message: `I am interested in your ${service.title} service. Please provide more details about the pricing and timeline.` }
+                        }));
+                      }}
+                      className="rounded-full w-12 h-12 bg-foreground/5 dark:bg-white/5 hover:bg-emerald-500 text-foreground dark:text-white dark:hover:text-white hover:text-white border border-foreground/10 dark:border-white/10 transition-all duration-300 group-hover:scale-110"
+                    >
                       <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                     </Button>
                   </div>

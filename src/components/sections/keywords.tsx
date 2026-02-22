@@ -47,7 +47,7 @@ const KeywordMarquee = () => {
                         {[...Array(4)].map((_, i) => (
                             <div key={i} className="flex gap-16 items-center px-8">
                                 {keywordItems.map((item, idx) => (
-                                    <div key={idx} className="flex items-center gap-4 text-foreground/10 dark:text-white/20 hover:text-emerald-500/40 transition-colors duration-500 cursor-default">
+                                    <div key={idx+2} className="flex items-center gap-4 text-foreground/10 dark:text-white/20 hover:text-emerald-500/40 transition-colors duration-500 cursor-default">
                                         <span className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
                                             {item.text}
                                         </span>

@@ -111,7 +111,7 @@ const Header = () => {
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-20 px-4">
             <a href="#hero" className="flex items-center gap-3 group">
-              <Logo />
+              <Logo simple color="white" />
             </a>
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => (
