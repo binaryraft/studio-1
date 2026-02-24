@@ -2,6 +2,7 @@ import Header from '@/components/header';
 import HeroSection from '@/components/sections/hero';
 import KeywordMarquee from '@/components/sections/keywords';
 import ServicesSection from '@/components/sections/services';
+import ProductsSection from '@/components/sections/products';
 import CareerSection from '@/components/sections/careers';
 import TechFeaturesSection from '@/components/sections/tech-features';
 import CostEstimatorSection from '@/components/sections/cost-estimator';
@@ -20,6 +21,7 @@ export default function Home() {
         <HeroSection />
         <KeywordMarquee />
         <ServicesSection />
+        <ProductsSection />
         <CareerSection />
         <TechFeaturesSection />
         <CostEstimatorSection />
