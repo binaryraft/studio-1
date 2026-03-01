@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Send, CheckCircle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, Loader2, Mail } from 'lucide-react';
 import { saveContactInfoAction } from '@/app/actions';
 import { useToast } from "@/hooks/use-toast";
 import { cn } from '@/lib/utils';
@@ -80,25 +80,34 @@ const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="w-full relative py-24 sm:py-32">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            Have a project in mind or just want to say hi? We'd love to hear from you.
+    <section id="contact" className="w-full relative py-32 sm:py-40">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,hsl(var(--primary)/0.08),transparent)] pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-6">
+            <Mail className="w-10 h-10" />
+          </div>
+          <h2 className="font-headline text-4xl md:text-6xl font-black tracking-tight mb-4">
+            Get In Touch
+          </h2>
+          <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
+            Have a project in mind? Need <strong className="text-foreground">AI</strong>, <strong className="text-foreground">cloud</strong>, <strong className="text-foreground">automation</strong>, <strong className="text-foreground">software</strong>, or <strong className="text-foreground">consulting</strong>? We'd love to hear from you.
           </p>
         </div>
+
         <Card className={cn(
-          "max-w-xl mx-auto glass-card transition-all duration-300",
-          "hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)]"
+          "max-w-2xl mx-auto glass-card transition-all duration-300 p-1",
+          "hover:shadow-[0_0_60px_hsl(var(--primary)/0.2)]"
         )}>
-          <CardContent className="p-8">
+          <CardContent className="p-10">
             {isSubmitted ? (
-              <div className="text-center animate-fade-in-up">
-                <CheckCircle className="mx-auto h-16 w-16 text-primary mb-4" />
-                <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground mb-6">Thanks for reaching out. We'll get back to you soon.</p>
-                <Button onClick={resetForm}>
+              <div className="text-center py-8 animate-fade-in-up">
+                <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="h-12 w-12 text-primary" />
+                </div>
+                <h3 className="text-3xl font-black mb-2">Message Sent!</h3>
+                <p className="text-muted-foreground mb-8 text-lg">Thanks for reaching out. We'll get back to you within 24 hours.</p>
+                <Button onClick={resetForm} size="lg" className="h-12 px-8">
                   Send another message
                 </Button>
               </div>
@@ -111,8 +120,8 @@ const ContactSection = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
-                          <FormControl><Input className="bg-transparent" placeholder="John Doe" {...field} /></FormControl>
+                          <FormLabel className="text-base">Full Name</FormLabel>
+                          <FormControl><Input className="bg-transparent h-12" placeholder="John Doe" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -122,8 +131,8 @@ const ContactSection = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address</FormLabel>
-                          <FormControl><Input className="bg-transparent" type="email" placeholder="you@example.com" {...field} /></FormControl>
+                          <FormLabel className="text-base">Email Address</FormLabel>
+                          <FormControl><Input className="bg-transparent h-12" type="email" placeholder="you@example.com" {...field} /></FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -134,8 +143,8 @@ const ContactSection = () => {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
-                        <FormControl><Input className="bg-transparent" type="tel" placeholder="(123) 456-7890" {...field} /></FormControl>
+                        <FormLabel className="text-base">Phone Number</FormLabel>
+                        <FormControl><Input className="bg-transparent h-12" type="tel" placeholder="(123) 456-7890" {...field} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -145,14 +154,14 @@ const ContactSection = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Your Message</FormLabel>
-                        <FormControl><Textarea className="bg-transparent" placeholder="Tell us about your project..." {...field} rows={5} /></FormControl>
+                        <FormLabel className="text-base">Your Message</FormLabel>
+                        <FormControl><Textarea className="bg-transparent min-h-[120px]" placeholder="Tell us about your project, AI needs, cloud migration, automation, or consulting..." {...field} rows={5} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" disabled={isLoading}>
-                    {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                  <Button type="submit" className="w-full h-14 text-base font-bold" disabled={isLoading}>
+                    {isLoading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Send className="mr-2 h-5 w-5" />}
                     Send Message
                   </Button>
                 </form>

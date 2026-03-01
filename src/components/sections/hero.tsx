@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import Logo from '@/components/logo';
 
 const keywords = [
-  "System Optimized", "Custom Software", "High-End Websites", "Digital Marketing", "Automation", "Artificial Intelligence", "Hardware Solutions", "Cyber Security", "Cloud Computing", "Machine Learning", "SaaS Platforms", "IoT Ecosystems"
+  "AI & ML", "Cloud Infrastructure", "Automations", "Custom Software", "Websites", "Applications", "Maintenance", "Migration", "Consulting", "Security", "Hardware", "IoT"
 ];
 
 const HeroSection = () => {
@@ -62,7 +62,7 @@ const HeroSection = () => {
 
             {/* Subheadline */}
             <p className="max-w-xl mx-auto lg:mx-0 text-xl md:text-2xl text-muted-foreground font-medium leading-relaxed animate-fade-in-up [animation-delay:400ms]">
-              Resolve all your technical and business oriented problems with our <span className="text-foreground dark:text-white font-bold">Scalable</span> and <span className="text-foreground dark:text-white font-bold">Secure</span>, well-optimized and customized solutions built according to your convenience.
+              We deliver <span className="text-foreground dark:text-white font-bold">AI</span>, <span className="text-foreground dark:text-white font-bold">cloud</span>, <span className="text-foreground dark:text-white font-bold">automations</span>, <span className="text-foreground dark:text-white font-bold">software</span>, <span className="text-foreground dark:text-white font-bold">websites</span>, <span className="text-foreground dark:text-white font-bold">applications</span>, <span className="text-foreground dark:text-white font-bold">maintenance</span>, <span className="text-foreground dark:text-white font-bold">migration</span>, <span className="text-foreground dark:text-white font-bold">consulting</span>, <span className="text-foreground dark:text-white font-bold">security</span>, and <span className="text-foreground dark:text-white font-bold">hardware</span> solutions—scalable, secure, and built for your business.
             </p>
 
             {/* CTAs */}

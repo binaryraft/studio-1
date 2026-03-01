@@ -126,7 +126,7 @@ const ServicesSection = () => {
               </span>
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in-up [animation-delay:200ms]">
-              We deliver full-cycle software development services that adapt to your business needs and grow with your ambition.
+              We deliver <strong className="text-foreground">AI integration</strong>, <strong className="text-foreground">cloud infrastructure</strong>, <strong className="text-foreground">automations</strong>, <strong className="text-foreground">custom software</strong>, <strong className="text-foreground">websites</strong>, <strong className="text-foreground">applications</strong>, <strong className="text-foreground">maintenance</strong>, <strong className="text-foreground">migration</strong>, <strong className="text-foreground">consulting</strong>, and <strong className="text-foreground">security</strong>—full-cycle services that adapt to your business and scale with your ambition.
             </p>
           </div>
 

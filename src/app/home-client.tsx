@@ -31,6 +31,11 @@ const GameSpaceSection = dynamic(() => import('@/components/sections/game-space'
   loading: () => null,
 });
 
+const ClientsSection = dynamic(() => import('@/components/sections/clients'), {
+  ssr: false,
+  loading: () => null,
+});
+
 export default function HomeClient() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
@@ -41,6 +46,7 @@ export default function HomeClient() {
         <KeywordMarquee />
         <ServicesSection />
         <ProductsSection />
+        <ClientsSection />
         <CareerSection />
         <TechFeaturesSection />
         <CostEstimatorSection />

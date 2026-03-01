@@ -11,6 +11,7 @@ import { saveContactInfoAction, type ContactFormData } from '@/app/actions';
 const navLinks = [
   { name: 'Services', href: '#services' },
   { name: 'Products', href: '#products' },
+  { name: 'Clients', href: '#clients' },
   { name: 'Features', href: '#features' },
   { name: 'Careers', href: '#careers' },
   { name: 'Estimator', href: '#estimator' },

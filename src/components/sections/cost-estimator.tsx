@@ -1,11 +1,10 @@
-
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, Send, CheckCircle2, Loader2, Sparkles, Tag } from 'lucide-react';
+import { Bot, User, Send, Sparkles, Tag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 
@@ -46,7 +45,7 @@ const CostEstimatorSection = () => {
     {
       id: '1',
       sender: 'ai',
-      text: "Hello! I'm Delvare's AI Estimator. I can help you calculate the cost for your next big project. Let's get started!",
+      text: "Hello! I'm Delvare's AI Estimator. I can help you calculate the cost for your next big project—websites, apps, custom software, cloud migrations, and more. Let's get started!",
     },
     {
       id: '2',
@@ -77,15 +76,12 @@ const CostEstimatorSection = () => {
   }, [messages, isTyping]);
 
   const handleOptionClick = (value: string, label: string) => {
-    // Add user response
     const newMessages = [
       ...messages,
       { id: Date.now().toString(), sender: 'user' as const, text: label },
     ];
     setMessages(newMessages);
     setSelections({ ...selections, [getStepKey(currentStep)]: value });
-
-    // Trigger next AI step
     processNextStep(currentStep + 1, value, newMessages);
   };
 
@@ -101,7 +97,6 @@ const CostEstimatorSection = () => {
     const stepKey = getStepKey(currentStep);
     setSelections({ ...selections, [stepKey]: inputValue });
     setInputValue("");
-
     processNextStep(currentStep + 1, inputValue, newMessages);
   };
 
@@ -172,8 +167,7 @@ const CostEstimatorSection = () => {
           };
           break;
         case 5:
-          // Calculate Result
-          const finalSelections = { ...selections, [getStepKey(4)]: lastValue }; // Ensure last value is captured
+          const finalSelections = { ...selections, [getStepKey(4)]: lastValue };
           const result = calculateCost(finalSelections);
           aiResponse = {
             id: Date.now().toString(),
@@ -213,10 +207,10 @@ const CostEstimatorSection = () => {
     const finalAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(total);
 
     return (
-      <div className="w-full max-w-sm mx-auto bg-card border border-border rounded-xl overflow-hidden mt-4 shadow-2xl animate-in zoom-in-95 duration-500">
-        <div className="bg-primary/10 p-4 border-b border-primary/10 flex justify-between items-center">
-          <span className="font-bold text-primary flex items-center gap-2">
-            <Sparkles className="w-4 h-4" /> Estimate Ready
+      <div className="w-full max-w-md mx-auto bg-card border border-border rounded-2xl overflow-hidden mt-6 shadow-[0_0_60px_hsl(var(--primary)/0.15)] animate-in zoom-in-95 duration-500">
+        <div className="bg-primary/10 p-5 border-b border-primary/10 flex justify-between items-center">
+          <span className="font-bold text-primary flex items-center gap-2 text-base">
+            <Sparkles className="w-5 h-5" /> Estimate Ready
           </span>
           <Badge variant="outline" className="bg-background text-xs">AI Generated</Badge>
         </div>
@@ -246,7 +240,7 @@ const CostEstimatorSection = () => {
             </div>
           </div>
           <Button
-            className="w-full font-bold mt-4"
+            className="w-full font-bold mt-4 h-12 text-base"
             size="lg"
             onClick={() => {
               const message = `I just used the AI Estimator for a ${pricingBase[type].label}. \n\nDetails:\n- Project: ${pricingBase[type].label}\n- Complexity: ${complexity.charAt(0).toUpperCase() + complexity.slice(1)}\n- Estimate: ${finalAmount}\n\nI would like to discuss this project further.`;
@@ -261,65 +255,70 @@ const CostEstimatorSection = () => {
   };
 
   return (
-    <section id="estimator" className="w-full py-24 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 relative z-10 max-w-3xl">
-        <div className="text-center mb-12 space-y-4">
-          <div className="inline-flex items-center justify-center p-2 rounded-full bg-primary/10 text-primary mb-4">
-            <Bot className="w-6 h-6" />
+    <section id="estimator" className="w-full py-32 sm:py-40 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,hsl(var(--primary)/0.08),transparent)] pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10 max-w-4xl">
+        <div className="text-center mb-16 space-y-6">
+          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4">
+            <Bot className="w-10 h-10" />
           </div>
-          <h2 className="font-headline text-4xl md:text-5xl font-black tracking-tight">AI Cost Estimator</h2>
-          <p className="text-lg text-muted-foreground">
-            Chat with our intelligent agent to get an instant quote for your project.
+          <Badge variant="outline" className="border-emerald-500/30 text-emerald-500 mb-2">
+            Instant Quote
+          </Badge>
+          <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl font-black tracking-tight">
+            AI Cost Estimator
+          </h2>
+          <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
+            Chat with our intelligent agent to get an instant quote. We estimate <strong className="text-foreground">websites</strong>, <strong className="text-foreground">apps</strong>, <strong className="text-foreground">custom software</strong>, <strong className="text-foreground">cloud migrations</strong>, and more.
           </p>
         </div>
 
-        <Card className="min-h-[600px] flex flex-col glass-card border-foreground/10 dark:border-white/10 shadow-2xl relative overflow-hidden">
-          {/* Chat Area */}
-          <div ref={chatContainerRef} className="flex-grow p-6 space-y-4 overflow-y-auto h-[500px] scrollbar-hide scroll-smooth">
+        <Card className="min-h-[640px] flex flex-col glass-card border-foreground/10 dark:border-white/10 shadow-[0_0_80px_hsl(var(--primary)/0.1)] relative overflow-hidden">
+          <div ref={chatContainerRef} className="flex-grow p-8 space-y-6 overflow-y-auto h-[540px] scrollbar-hide scroll-smooth">
             {messages.map((msg) => (
-              <div key={msg.id} className={cn("flex gap-3", msg.sender === 'user' ? "justify-end" : "justify-start")}>
+              <div key={msg.id} className={cn("flex gap-4", msg.sender === 'user' ? "justify-end" : "justify-start")}>
                 {msg.sender === 'ai' && (
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0 mt-1">
-                    <Bot className="w-5 h-5 text-emerald-500" />
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 mt-1">
+                    <Bot className="w-6 h-6 text-emerald-500" />
                   </div>
                 )}
                 <div className={cn(
-                  "max-w-[80%] p-4 rounded-2xl text-sm md:text-base shadow-sm",
+                  "max-w-[85%] p-5 rounded-2xl text-base shadow-sm",
                   msg.sender === 'ai' ? "bg-secondary text-secondary-foreground rounded-tl-none" : "bg-primary text-primary-foreground rounded-tr-none"
                 )}>
                   {msg.text}
                 </div>
                 {msg.sender === 'user' && (
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                    <User className="w-5 h-5 text-primary" />
+                  <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 mt-1">
+                    <User className="w-6 h-6 text-primary" />
                   </div>
                 )}
               </div>
             ))}
 
             {isTyping && (
-              <div className="flex gap-3 justify-start animate-fade-in-up">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                  <Bot className="w-5 h-5 text-emerald-500" />
+              <div className="flex gap-4 justify-start animate-fade-in-up">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                  <Bot className="w-6 h-6 text-emerald-500" />
                 </div>
-                <div className="bg-secondary text-secondary-foreground p-4 rounded-2xl rounded-tl-none flex items-center gap-1 h-12">
-                  <div className="w-2 h-2 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <div className="w-2 h-2 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <div className="w-2 h-2 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                <div className="bg-secondary text-secondary-foreground p-5 rounded-2xl rounded-tl-none flex items-center gap-2 h-14">
+                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                 </div>
               </div>
             )}
           </div>
 
-          {/* Input Area */}
-          <div className="p-4 border-t border-border bg-background/50 backdrop-blur-md">
+          <div className="p-6 border-t border-border bg-background/60 backdrop-blur-md">
             {messages[messages.length - 1]?.type === 'options' && !isTyping ? (
-              <div className="flex flex-wrap gap-2 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {messages[messages.length - 1].options?.map((opt) => (
                   <Button
                     key={opt.value}
                     variant="outline"
-                    className="rounded-full border-primary/20 hover:bg-primary/10 hover:border-primary"
+                    size="lg"
+                    className="rounded-full border-primary/20 hover:bg-primary/10 hover:border-primary px-6"
                     onClick={() => handleOptionClick(opt.value, opt.label)}
                   >
                     {opt.label}
@@ -327,15 +326,15 @@ const CostEstimatorSection = () => {
                 ))}
               </div>
             ) : messages[messages.length - 1]?.type === 'input' && !isTyping ? (
-              <form onSubmit={handleInputSubmit} className="flex gap-2">
+              <form onSubmit={handleInputSubmit} className="flex gap-3">
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type here..."
-                  className="bg-background border-primary/20 focus-visible:ring-primary"
+                  placeholder="Type here or 'skip'..."
+                  className="bg-background border-primary/20 focus-visible:ring-primary h-12 flex-1"
                 />
-                <Button type="submit" size="icon" className="shrink-0">
-                  <Send className="w-4 h-4" />
+                <Button type="submit" size="icon" className="shrink-0 h-12 w-12">
+                  <Send className="w-5 h-5" />
                 </Button>
               </form>
             ) : null}
