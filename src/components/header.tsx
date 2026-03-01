@@ -139,7 +139,7 @@ const Header = () => {
                 onClick={() => toggleForm('contact')}
                 className={cn(
                   "transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.2)]",
-                  formOpen ? "bg-white text-emerald-600 hover:bg-white/90" : "bg-emerald-500 hover:bg-emerald-600 text-white"
+                  formOpen ? "bg-card text-emerald-700 dark:text-emerald-300 hover:bg-card/90 dark:hover:bg-card/80" : "bg-emerald-500 hover:bg-emerald-600 text-white"
                 )}
               >
                 {formOpen ? "Close Panel" : "Contact Us"}
@@ -228,7 +228,7 @@ const Header = () => {
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full py-6 text-lg font-bold bg-white text-emerald-600 hover:bg-emerald-50 rounded-xl shadow-xl transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70"
+                        className="w-full py-6 text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl shadow-xl transition-all hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70"
                       >
                         {isLoading ? (
                           <span className="flex items-center gap-2">
@@ -252,7 +252,7 @@ const Header = () => {
                 </>
               ) : (
                 <div className="flex flex-col items-center justify-center py-12 text-center space-y-6 animate-in fade-in zoom-in duration-500">
-                  <div className="h-24 w-24 rounded-full bg-white flex items-center justify-center shadow-2xl animate-bounce">
+                  <div className="h-24 w-24 rounded-full bg-card flex items-center justify-center shadow-2xl animate-bounce">
                     <svg className="w-12 h-12 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"></path>
                     </svg>

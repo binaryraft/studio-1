@@ -1,16 +1,33 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/header';
 import HeroSection from '@/components/sections/hero';
 import KeywordMarquee from '@/components/sections/keywords';
 import ServicesSection from '@/components/sections/services';
 import ProductsSection from '@/components/sections/products';
-import CareerSection from '@/components/sections/careers';
-import TechFeaturesSection from '@/components/sections/tech-features';
-import CostEstimatorSection from '@/components/sections/cost-estimator';
-import GameSpaceSection from '@/components/sections/game-space';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/footer';
 import BackgroundDecor from '@/components/background-decor';
 import WhatsAppButton from '@/components/whatsapp-button';
+
+const CareerSection = dynamic(() => import('@/components/sections/careers'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const TechFeaturesSection = dynamic(() => import('@/components/sections/tech-features'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const CostEstimatorSection = dynamic(() => import('@/components/sections/cost-estimator'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const GameSpaceSection = dynamic(() => import('@/components/sections/game-space'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Home() {
   return (

@@ -23,8 +23,8 @@ const KeywordMarquee = () => {
             <div className="flex flex-col gap-12 relative z-10">
                 {/* Row 1: Smooth Forward */}
                 <div className="relative rotate-[-2deg] scale-110">
-                    <div className="flex whitespace-nowrap animate-marquee">
-                        {[...Array(4)].map((_, i) => (
+                    <div className="flex whitespace-nowrap motion-safe:animate-marquee">
+                        {[...Array(3)].map((_, i) => (
                             <div key={i} className="flex gap-16 items-center px-8">
                                 {keywordItems.map((item, idx) => (
                                     <div key={idx} className="flex items-center gap-4 text-foreground/10 dark:text-white/20 hover:text-emerald-500/40 transition-colors duration-500 cursor-default">
@@ -43,8 +43,8 @@ const KeywordMarquee = () => {
 
                 {/* Row 2: Smooth Reverse */}
                 <div className="relative rotate-[2deg] scale-110 -mt-4">
-                    <div className="flex whitespace-nowrap animate-marquee-reverse">
-                        {[...Array(4)].map((_, i) => (
+                    <div className="flex whitespace-nowrap motion-safe:animate-marquee-reverse">
+                        {[...Array(3)].map((_, i) => (
                             <div key={i} className="flex gap-16 items-center px-8">
                                 {keywordItems.map((item, idx) => (
                                     <div key={idx+2} className="flex items-center gap-4 text-foreground/10 dark:text-white/20 hover:text-emerald-500/40 transition-colors duration-500 cursor-default">

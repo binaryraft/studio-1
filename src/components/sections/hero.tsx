@@ -31,8 +31,8 @@ const HeroSection = () => {
 
       {/* --- Ambient Background Effects --- */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[1000px] h-[1000px] bg-emerald-500/10 rounded-full blur-[150px] opacity-40 animate-pulse" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[150px] opacity-30 animate-pulse delay-1000" />
+        <div className="absolute top-[-20%] left-[-10%] w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[120px] opacity-35 motion-safe:animate-pulse" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] opacity-25 motion-safe:animate-pulse delay-1000" />
       </div>
 
       {/* --- Cyber Grid --- */}
@@ -107,12 +107,12 @@ const HeroSection = () => {
             <div className="relative w-full h-full flex items-center justify-center preserve-3d transition-transform duration-500 ease-out group-hover:rotate-y-6 group-hover:rotate-x-6">
 
               {/* Center: Brand Core */}
-              <div className="absolute z-20 w-64 h-64 bg-background/40 dark:bg-black/40 backdrop-blur-3xl border border-foreground/10 dark:border-white/20 rounded-[3rem] shadow-[0_0_80px_rgba(16,185,129,0.2)] flex items-center justify-center animate-breath">
+              <div className="absolute z-20 w-64 h-64 bg-background/40 dark:bg-black/40 backdrop-blur-3xl border border-foreground/10 dark:border-white/20 rounded-[3rem] shadow-[0_0_80px_rgba(16,185,129,0.2)] flex items-center justify-center motion-safe:animate-breath">
                 <div className="scale-150 drop-shadow-[0_0_30px_rgba(16,185,129,0.5)]"><Logo /></div>
               </div>
 
               {/* Orbital 1: Code (Top Left) */}
-              <div className="absolute top-20 left-10 w-48 h-56 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl animate-float [animation-delay:0ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
+              <div className="absolute top-20 left-10 w-48 h-56 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl motion-safe:animate-float [animation-delay:0ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
                 <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover/card:bg-blue-500 group-hover/card:text-white transition-colors">
                   <Terminal className="w-6 h-6" />
                 </div>
@@ -123,7 +123,7 @@ const HeroSection = () => {
               </div>
 
               {/* Orbital 2: Cloud (Top Right) */}
-              <div className="absolute top-10 right-10 w-44 h-44 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl animate-float [animation-delay:1000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
+              <div className="absolute top-10 right-10 w-44 h-44 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl motion-safe:animate-float [animation-delay:1000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
                 <div className="w-12 h-12 rounded-2xl bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover/card:bg-orange-500 group-hover/card:text-white transition-colors">
                   <Cloud className="w-6 h-6" />
                 </div>
@@ -134,7 +134,7 @@ const HeroSection = () => {
               </div>
 
               {/* Orbital 3: Security (Bottom Right) */}
-              <div className="absolute bottom-32 right-0 w-48 h-60 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl animate-float [animation-delay:2000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
+              <div className="absolute bottom-32 right-0 w-48 h-60 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl motion-safe:animate-float [animation-delay:2000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
                 <div className="w-12 h-12 rounded-2xl bg-red-500/20 flex items-center justify-center text-red-400 group-hover/card:bg-red-500 group-hover/card:text-white transition-colors">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
@@ -148,7 +148,7 @@ const HeroSection = () => {
               </div>
 
               {/* Orbital 4: Dynamic Keywords (Bottom Left) */}
-              <div className="absolute bottom-20 left-0 w-52 h-44 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl animate-float [animation-delay:3000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
+              <div className="absolute bottom-20 left-0 w-52 h-44 bg-foreground/5 dark:bg-white/5 backdrop-blur-xl border border-foreground/10 dark:border-white/10 rounded-3xl p-6 flex flex-col justify-between shadow-2xl motion-safe:animate-float [animation-delay:3000ms] hover:scale-110 hover:bg-foreground/10 dark:hover:bg-white/10 transition-all cursor-default group/card">
                 <div className="w-12 h-12 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover/card:bg-purple-500 group-hover/card:text-white transition-colors">
                   <Cpu className="w-6 h-6" />
                 </div>

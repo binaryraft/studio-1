@@ -44,7 +44,10 @@ const CareerSection = () => {
                             ))}
                         </div>
 
-                        <Button size="xl" className="bg-white text-emerald-950 hover:bg-emerald-50 font-black shadow-2xl" onClick={() => {
+                        <Button
+                            size="xl"
+                            className="bg-card text-emerald-900 dark:text-emerald-100 hover:bg-emerald-50 dark:hover:bg-emerald-500/20 font-black shadow-2xl"
+                            onClick={() => {
                             window.dispatchEvent(new CustomEvent('open-contact-form', { detail: { type: 'career' } }));
                         }}>
                             Join the Academy

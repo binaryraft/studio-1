@@ -64,8 +64,8 @@ const TechFeaturesSection = () => {
       />
 
       {/* Dynamic Ambient Glows */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-emerald-500/10 rounded-full blur-[110px] motion-safe:animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-1/4 w-[520px] h-[520px] bg-primary/10 rounded-full blur-[140px] motion-safe:animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header Section */}
@@ -118,14 +118,14 @@ const TechFeaturesSection = () => {
             <div className="absolute -inset-32 border-2 border-dashed border-emerald-500/5 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
 
             {/* Core Body */}
-            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-[3.5rem] bg-background/60 dark:bg-black/60 backdrop-blur-3xl border border-emerald-500/40 shadow-[0_0_100px_rgba(16,185,129,0.2)] flex items-center justify-center group-hover:scale-105 transition-transform duration-700 animate-breath">
+            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-[3.5rem] bg-background/60 dark:bg-black/60 backdrop-blur-3xl border border-emerald-500/40 shadow-[0_0_100px_rgba(16,185,129,0.2)] flex items-center justify-center group-hover:scale-105 transition-transform duration-700 motion-safe:animate-breath">
               {/* Glow Core */}
               <div className="absolute inset-4 rounded-[2.5rem] bg-gradient-to-br from-emerald-500/20 to-transparent blur-xl" />
 
               {/* Reactor Icon */}
               <div className="relative flex flex-col items-center gap-3">
                 <div className="relative">
-                  <Zap className="w-20 h-20 md:w-28 md:h-28 text-emerald-400 fill-emerald-500/10 animate-pulse" />
+                  <Zap className="w-20 h-20 md:w-28 md:h-28 text-emerald-400 fill-emerald-500/10 motion-safe:animate-pulse" />
                   <div className="absolute inset-0 text-emerald-400 animate-ping opacity-20">
                     <Zap className="w-full h-full" />
                   </div>
@@ -228,7 +228,7 @@ const TechNode = ({ feature }: { feature: typeof coreFeatures[0] }) => {
 
 const NodeDot = ({ pos, delay }: { pos: any, delay: string }) => (
   <div
-    className="absolute w-2 h-2 bg-emerald-500/40 rounded-full animate-pulse-glow pointer-events-none"
+    className="absolute w-2 h-2 bg-emerald-500/40 rounded-full motion-safe:animate-pulse-glow pointer-events-none"
     style={{ ...pos, animationDelay: delay }}
   />
 );
