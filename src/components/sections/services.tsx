@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code, Smartphone, Cloud, PenTool, BarChart, ShieldCheck, ArrowRight, Zap, Check, Globe } from 'lucide-react';
+import { Code, Smartphone, Cloud, BarChart, ShieldCheck, ArrowRight, Zap, Check, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLocation } from '@/hooks/use-location';
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider"
+import { siteConfig } from '@/lib/site-config';
 import './globals.css';
 
 const inter = Inter({
@@ -16,16 +17,6 @@ const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   display: 'swap',
 });
-
-const siteConfig = {
-  name: 'XAAS by Delvare',
-  title: 'XAAS by Delvare | Anything as a Service',
-  description: 'Scalable & Secure Business Solutions at affordability',
-  url: 'https://delvare.in',
-  ogImage: 'https://res.cloudinary.com/dt4mweku7/image/upload/v1751266409/buissware_amykyt.gif',
-  icon: 'https://res.cloudinary.com/dt4mweku7/image/upload/v1751266408/buissware_h6bmig.png',
-  keywords: ['XAAS', 'Delvare', 'software', 'company', 'MNC', 'business solutions', 'cloud infrastructure', 'security engineering', 'business analysis', 'MNC'],
-};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

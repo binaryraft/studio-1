@@ -1,6 +1,6 @@
 'use client';
 
-import { ShieldCheck, LineChart, Cpu, Laptop, Zap, Layers, Database, Globe, Command, Radio, Activity } from 'lucide-react';
+import { ShieldCheck, LineChart, Cpu, Laptop, Zap, Command, Activity } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 

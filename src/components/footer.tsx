@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Phone, Mail, Copyright, Package, ExternalLink } from 'lucide-react';
 import Logo from '@/components/logo';
 import { LegalModals, type PolicyType } from '@/components/legal-modals';
+import { siteConfig } from '@/lib/site-config';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,6 +35,7 @@ const Footer = () => {
             <ul className="space-y-4 text-muted-foreground font-medium">
               <li><a href="#services" className="hover:text-emerald-500 transition-colors">Services</a></li>
               <li><a href="#products" className="hover:text-emerald-500 transition-colors">Products</a></li>
+              <li><a href="#clients" className="hover:text-emerald-500 transition-colors">Clients</a></li>
               <li><a href="#careers" className="hover:text-emerald-500 transition-colors">Careers &amp; Academy</a></li>
               <li><a href="#estimator" className="hover:text-emerald-500 transition-colors">Cost Estimator</a></li>
             </ul>
@@ -68,13 +70,13 @@ const Footer = () => {
                 <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                   <Mail className="w-4 h-4 text-emerald-500" />
                 </div>
-                <a href="mailto:delvaresoftwares@gmail.com" className="hover:text-emerald-500 transition-colors">admin@delvare.in</a>
+                <a href={siteConfig.contact.emailHref} className="hover:text-emerald-500 transition-colors">{siteConfig.contact.email}</a>
               </li>
               <li className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                   <Phone className="w-4 h-4 text-emerald-500" />
                 </div>
-                <a href="tel:8606281125" className="hover:text-emerald-500 transition-colors">+91 8606821125</a>
+                <a href={siteConfig.contact.phoneHref} className="hover:text-emerald-500 transition-colors">{siteConfig.contact.phone}</a>
               </li>
             </ul>
           </div>
@@ -85,9 +87,9 @@ const Footer = () => {
             <Copyright className="w-4 h-4 shrink-0" /> {currentYear} XAAS by Delvare MNC. All Rights Reserved.
           </p>
           <div className="flex gap-8 text-sm font-bold text-muted-foreground uppercase tracking-widest">
-            <button onClick={() => openPolicy('privacy')} className="hover:text-emerald-500 transition-colors">Privacy</button>
-            <button onClick={() => openPolicy('terms')} className="hover:text-emerald-500 transition-colors">Terms</button>
-            <button onClick={() => openPolicy('security')} className="hover:text-emerald-500 transition-colors">Security</button>
+            <button onClick={() => openPolicy('privacy')} className="hover:text-emerald-500 transition-colors" aria-label="Open Privacy Policy">Privacy</button>
+            <button onClick={() => openPolicy('terms')} className="hover:text-emerald-500 transition-colors" aria-label="Open Terms of Service">Terms</button>
+            <button onClick={() => openPolicy('security')} className="hover:text-emerald-500 transition-colors" aria-label="Open Security Policy">Security</button>
           </div>
         </div>
       </div>

@@ -38,15 +38,15 @@ const ContactSection = () => {
   });
 
   useEffect(() => {
-    const handleAutofill = (e: any) => {
-      const message = e.detail?.message;
+    const handleAutofill = (e: Event) => {
+      const message = (e as CustomEvent<{ message?: string }>).detail?.message;
       if (message) {
         form.setValue('message', message);
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
       }
     };
-    window.addEventListener('delvare:autofill' as any, handleAutofill);
-    return () => window.removeEventListener('delvare:autofill' as any, handleAutofill);
+    window.addEventListener('delvare:autofill', handleAutofill as EventListener);
+    return () => window.removeEventListener('delvare:autofill', handleAutofill as EventListener);
   }, [form]);
 
   const onSubmit = async (data: FormValues) => {

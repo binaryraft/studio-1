@@ -7,6 +7,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { saveContactInfoAction, type ContactFormData } from '@/app/actions';
+import { useToast } from '@/hooks/use-toast';
 
 const navLinks = [
   { name: 'Services', href: '#services' },
@@ -18,6 +19,7 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const { toast } = useToast();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
@@ -41,8 +43,8 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const handleOpenForm = (e: any) => {
-      const type = e.detail?.type || 'contact';
+    const handleOpenForm = (e: Event) => {
+      const type = (e as CustomEvent<{ type?: 'contact' | 'career' }>).detail?.type ?? 'contact';
       setFormType(type);
       setFormOpen(true);
       setMenuOpen(false);
@@ -93,11 +95,11 @@ const Header = () => {
           setIsSubmitted(false);
         }, 4000);
       } else {
-        alert(result.error || "Failed to send enquiry. Please try again.");
+        toast({ variant: 'destructive', title: 'Submission Failed', description: result.error ?? 'Failed to send enquiry. Please try again.' });
       }
     } catch (error) {
       console.error("Submission error:", error);
-      alert("An error occurred. Please try again later.");
+      toast({ variant: 'destructive', title: 'Error', description: 'An error occurred. Please try again later.' });
     } finally {
       setIsLoading(false);
     }
@@ -153,6 +155,7 @@ const Header = () => {
                 size="icon"
                 onClick={() => setMenuOpen(true)}
                 className={formOpen ? "text-white" : ""}
+                aria-label="Open menu"
               >
                 <Menu />
               </Button>
@@ -280,7 +283,7 @@ const Header = () => {
         <div className="container mx-auto flex flex-col h-full bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.1),transparent)]">
           <div className="flex justify-between items-center h-20 px-4">
             <Logo />
-            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)} className="rounded-full bg-foreground/5 dark:bg-white/5">
+            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)} className="rounded-full bg-foreground/5 dark:bg-white/5" aria-label="Close menu">
               <X />
             </Button>
           </div>
