@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Download, FileText, ArrowRight, Sparkles, BookOpen, Layers } from 'lucide-react';
+import { generatePDF } from '@/lib/pdf-generator';
 
 const CatalogSection = () => {
     return (
@@ -29,12 +30,21 @@ const CatalogSection = () => {
                         </p>
 
                         <div className="flex flex-wrap gap-4 pt-4">
-                            <Button size="lg" className="h-16 px-8 text-lg font-bold premium-gradient shadow-xl shadow-primary/20 group">
+                            <Button
+                                size="lg"
+                                className="h-16 px-8 text-lg font-bold premium-gradient shadow-xl shadow-primary/20 group"
+                                onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Catalog_2026')}
+                            >
                                 <Download className="mr-3 w-6 h-6 group-hover:animate-bounce" />
                                 Download Catalog 2026
                             </Button>
-                            <Button size="lg" variant="outline" className="h-16 px-8 text-lg font-bold border-primary/20 hover:bg-primary/5">
-                                <FileText className="mr-3 w-6 h-6" />
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                className="h-16 px-8 text-lg font-bold border-primary/20 hover:bg-primary/5"
+                                onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Portfolio')}
+                            >
+                                <Download className="mr-3 w-6 h-6" />
                                 Service Portfolio
                             </Button>
                         </div>

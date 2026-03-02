@@ -42,7 +42,10 @@ const regionMultipliers = {
   local: 0.8,
 };
 
-const CostEstimatorSection = () => {
+import { generatePDF } from '@/lib/pdf-generator';
+
+const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: any) => void }) => {
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -245,15 +248,26 @@ const CostEstimatorSection = () => {
             <Button
               variant="outline"
               className="gap-2 border-primary/20 hover:bg-primary/5"
-              onClick={() => window.print()}
+              onClick={async () => {
+                onQuoteGenerated?.({
+                  label: pricingBase[domain].label,
+                  complexity,
+                  speed,
+                  scale,
+                  amount: finalAmount
+                });
+                // Small delay to ensure state update and template rendering
+                setTimeout(() => generatePDF('quotation-pdf-template', `Quotation_${domain}`), 100);
+              }}
             >
-              <Printer className="w-4 h-4" /> Print PDF
+              <Download className="w-4 h-4" /> Download Quote
             </Button>
             <Button
               variant="outline"
               className="gap-2 border-primary/20 hover:bg-primary/5"
+              onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Catalog_2026')}
             >
-              <Download className="w-4 h-4" /> Catalog
+              <Download className="w-4 h-4" /> Download Catalog
             </Button>
           </div>
 

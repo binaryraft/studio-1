@@ -46,7 +46,12 @@ const TechStackSection = dynamic(() => import('@/components/sections/tech-stack'
   loading: () => null,
 });
 
+import { useState } from 'react';
+import { QuotationPDFTemplate, CatalogPDFTemplate } from '@/components/printable-assets';
+
 export default function HomeClient() {
+  const [quotationData, setQuotationData] = useState<any>(null);
+
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <BackgroundDecor />
@@ -60,13 +65,17 @@ export default function HomeClient() {
         <TechStackSection />
         <CareerSection />
         <TechFeaturesSection />
-        <CostEstimatorSection />
+        <CostEstimatorSection onQuoteGenerated={setQuotationData} />
         <GameSpaceSection />
         <CatalogSection />
         <ContactSection />
         <WhatsAppButton />
         <Footer />
       </main>
+
+      {/* Hidden PDF Templates for Generation */}
+      <QuotationPDFTemplate data={quotationData} />
+      <CatalogPDFTemplate />
     </div>
   );
 }
