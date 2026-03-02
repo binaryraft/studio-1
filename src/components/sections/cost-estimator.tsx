@@ -4,9 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, Send, Sparkles, Tag, Download, Printer, Share2, Rocket, Cloud, Brain, Globe, Smartphone, Code } from 'lucide-react';
+import { Bot, User, Send, Sparkles, Tag, Download, Printer, Share2, Rocket, Cloud, Brain, Globe, Smartphone, Code, Hammer, RefreshCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
+import { generatePDF } from '@/lib/pdf-generator';
 
 type Message = {
   id: string;
@@ -17,12 +18,11 @@ type Message = {
 };
 
 const pricingBase = {
-  website: { base: 2500, label: 'Modern Website', icon: Globe },
-  app: { base: 15000, label: 'Mobile Application', icon: Smartphone },
-  software: { base: 12000, label: 'Enterprise Software', icon: Code },
-  ai: { base: 20000, label: 'AI/ML Integration', icon: Brain },
-  cloud: { base: 8000, label: 'Cloud Infrastructure', icon: Cloud },
-  mvp: { base: 5000, label: 'Rapid MVP development', icon: Rocket },
+  ai: { base: 25000, label: 'AI/ML Training & Tuning', icon: Brain, desc: 'Custom model training, fine-tuning, and on-premise/hybrid deployment' },
+  cloud: { base: 12000, label: 'Cloud Automation Architect', icon: Cloud, desc: 'Enterprise-scale workflow automation and managed cloud infrastructure' },
+  software: { base: 15000, label: 'Full-Stack Ecosystem', icon: Code, desc: 'High-performance Next.js, Gatsby, or Vite solutions for Web, iOS, and Android' },
+  maintenance: { base: 5000, label: 'Expert Solution Maintenance', icon: Hammer, desc: 'Handover your existing software for 24/7 expert monitoring and optimization' },
+  migration: { base: 8000, label: 'Legacy-to-Nexus Migration', icon: RefreshCcw, desc: 'Redeveloping old architectures into modern, lightning-fast digital assets' },
 };
 
 const complexityMultipliers = {
@@ -42,28 +42,24 @@ const regionMultipliers = {
   local: 0.8,
 };
 
-import { generatePDF } from '@/lib/pdf-generator';
-
 const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: any) => void }) => {
-
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       sender: 'ai',
-      text: "Welcome to Delvare's Nexus. I am your AI Architect. I'll help you blueprint and estimate your next breakthrough project.",
+      text: "Welcome to Delvare's Nexus. I am your AI Architect. I'll help you blueprint, estimate, and initiate your next breakthrough project.",
     },
     {
       id: '2',
       sender: 'ai',
-      text: "Select the core domain of your project:",
+      text: "Select the domain where you want to achieve perfection:",
       type: 'options',
       options: [
-        { label: "Modern Website", value: "website", icon: Globe },
-        { label: "Mobile App", value: "app", icon: Smartphone },
-        { label: "Enterprise Software", value: "software", icon: Code },
-        { label: "AI Integration", value: "ai", icon: Brain },
-        { label: "Cloud Infra", value: "cloud", icon: Cloud },
-        { label: "Rapid MVP", value: "mvp", icon: Rocket },
+        { label: "AI Training & Deploy", value: "ai", icon: Brain },
+        { label: "Cloud Automation", value: "cloud", icon: Cloud },
+        { label: "Software Development", value: "software", icon: Code },
+        { label: "Expert Maintenance", value: "maintenance", icon: Hammer },
+        { label: "Legacy Migration", value: "migration", icon: RefreshCcw },
       ],
     },
   ]);
@@ -114,6 +110,9 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
       case 1: return 'complexity';
       case 2: return 'speed';
       case 3: return 'scale';
+      case 4: return 'clientName';
+      case 5: return 'clientEmail';
+      case 6: return 'clientPhone';
       default: return 'unknown';
     }
   };
@@ -130,12 +129,12 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "Exquisite. What level of complexity are we looking at?",
+            text: "Exquisite choice. What level of complexity are we looking at for this system?",
             type: 'options',
             options: [
-              { label: "Basic (Essential Features)", value: "basic" },
-              { label: "Advanced (Custon Workflows)", value: "advanced" },
-              { label: "Complex (Full Scale Enterprise)", value: "complex" },
+              { label: "Standard (Essential Scale)", value: "basic" },
+              { label: "High Performance (Custom Logic)", value: "advanced" },
+              { label: "Omni-Scale (Full Enterprise)", value: "complex" },
             ],
           };
           break;
@@ -143,11 +142,11 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "Understood. How fast do you need the first deployment?",
+            text: "Understood. How fast do you need to reach the market?",
             type: 'options',
             options: [
-              { label: "Standard (8-12 weeks)", value: "standard" },
-              { label: "Express (4-6 weeks)", value: "express" },
+              { label: "Standard Protocol (8-16 weeks)", value: "standard" },
+              { label: "Accelerated Protocol (4-6 weeks)", value: "express" },
             ],
           };
           break;
@@ -155,17 +154,41 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "Final detail: What is the intended scale of this solution?",
+            text: "Final architectural detail: What is the intended scale of this deployment?",
             type: 'options',
             options: [
-              { label: "Local (Niche Market)", value: "local" },
-              { label: "Regional (State/Country)", value: "regional" },
-              { label: "Global (World-wide)", value: "global" },
+              { label: "Local / Niche Integration", value: "local" },
+              { label: "Regional / Multi-State", value: "regional" },
+              { label: "Global / Cross-Continent", value: "global" },
             ],
           };
           break;
         case 4:
-          const finalSelections = { ...selections, scale: lastValue };
+          aiResponse = {
+            id: Date.now().toString(),
+            sender: 'ai',
+            text: "To generate your precision quotation, may I have your full name?",
+            type: 'input',
+          };
+          break;
+        case 5:
+          aiResponse = {
+            id: Date.now().toString(),
+            sender: 'ai',
+            text: `Pleasure, ${lastValue}. And what is your official email address for the blueprint delivery?`,
+            type: 'input',
+          };
+          break;
+        case 6:
+          aiResponse = {
+            id: Date.now().toString(),
+            sender: 'ai',
+            text: "Almost there. Please provide your contact number (with country code) for a direct consultation link.",
+            type: 'input',
+          };
+          break;
+        case 7:
+          const finalSelections = { ...selections, clientPhone: lastValue };
           const result = calculateCost(finalSelections);
           aiResponse = {
             id: Date.now().toString(),
@@ -180,7 +203,7 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
       if (aiResponse) {
         setMessages([...currentMessages, aiResponse]);
       }
-    }, 1200);
+    }, 1000);
   };
 
   const calculateCost = (finalSelections: any) => {
@@ -197,6 +220,17 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
 
     const Icon = pricingBase[domain].icon;
 
+    const quotePayload = {
+      label: pricingBase[domain].label,
+      complexity,
+      speed,
+      scale,
+      amount: finalAmount,
+      clientName: finalSelections.clientName,
+      clientEmail: finalSelections.clientEmail,
+      clientPhone: finalSelections.clientPhone
+    };
+
     return (
       <Card className="w-full max-w-lg mx-auto overflow-hidden mt-6 bg-gradient-to-br from-card to-card/50 border-primary/20 shadow-2xl animate-in fade-in zoom-in duration-500">
         <div className="p-1 bg-gradient-to-r from-emerald-500 via-primary to-cyan-500" />
@@ -206,7 +240,8 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
               <Badge variant="outline" className="text-emerald-500 border-emerald-500/20 bg-emerald-500/5">
                 Nexus Verified Estimate
               </Badge>
-              <h3 className="text-2xl font-black mt-2">Project Quotation</h3>
+              <h3 className="text-2xl font-black mt-2">Personalized Quotation</h3>
+              <p className="text-xs text-muted-foreground uppercase">Prepared for: <span className="text-foreground font-bold">{finalSelections.clientName}</span></p>
             </div>
             <div className="p-3 rounded-2xl bg-primary/10 text-primary">
               <Icon className="w-8 h-8" />
@@ -216,15 +251,7 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           <div className="grid grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
               <span className="text-xs text-muted-foreground uppercase tracking-widest">Domain</span>
-              <p className="font-bold">{pricingBase[domain].label}</p>
-            </div>
-            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
-              <span className="text-xs text-muted-foreground uppercase tracking-widest">Complexity</span>
-              <p className="font-bold capitalize">{complexity}</p>
-            </div>
-            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
-              <span className="text-xs text-muted-foreground uppercase tracking-widest">Pace</span>
-              <p className="font-bold capitalize">{speed}</p>
+              <p className="font-bold text-sm leading-tight">{pricingBase[domain].label}</p>
             </div>
             <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
               <span className="text-xs text-muted-foreground uppercase tracking-widest">Scale</span>
@@ -235,10 +262,10 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           <div className="py-6 border-y border-border/50">
             <div className="flex justify-between items-end">
               <div>
-                <p className="text-sm text-muted-foreground">Estimated Investment</p>
+                <p className="text-sm text-muted-foreground">Investment Approximation</p>
                 <div className="flex items-center gap-2">
                   <span className="text-4xl font-black text-foreground">{finalAmount}</span>
-                  <Badge className="bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500/30 border-none">+ VAT/Tax</Badge>
+                  <Badge className="bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500/30 border-none">USD</Badge>
                 </div>
               </div>
             </div>
@@ -247,35 +274,29 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
           <div className="grid grid-cols-2 gap-3">
             <Button
               variant="outline"
-              className="gap-2 border-primary/20 hover:bg-primary/5"
+              className="gap-2 border-primary/20 hover:bg-primary/5 h-12"
               onClick={async () => {
-                onQuoteGenerated?.({
-                  label: pricingBase[domain].label,
-                  complexity,
-                  speed,
-                  scale,
-                  amount: finalAmount
-                });
-                // Small delay to ensure state update and template rendering
-                setTimeout(() => generatePDF('quotation-pdf-template', `Quotation_${domain}`), 100);
+                onQuoteGenerated?.(quotePayload);
+                setTimeout(() => generatePDF('quotation-pdf-template', `Delvare_Quote_${finalSelections.clientName.replace(/\s+/g, '_')}`), 150);
               }}
             >
               <Download className="w-4 h-4" /> Download Quote
             </Button>
             <Button
               variant="outline"
-              className="gap-2 border-primary/20 hover:bg-primary/5"
-              onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Catalog_2026')}
+              className="gap-2 border-primary/20 hover:bg-primary/5 h-12"
+              onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Master_Catalog')}
             >
-              <Download className="w-4 h-4" /> Download Catalog
+              <Download className="w-4 h-4" /> Full Catalog
             </Button>
           </div>
 
           <Button
             className="w-full font-bold h-14 text-lg premium-gradient shadow-lg shadow-primary/20"
             onClick={() => {
-              const message = `I just generated a quotation for a ${pricingBase[domain].label}.\n\nConfig:\n- Complexity: ${complexity}\n- Pace: ${speed}\n- Scale: ${scale}\n- Estimate: ${finalAmount}\n\nLet's build this.`;
+              const message = `High Attention: ${finalSelections.clientName} generated a ${pricingBase[domain].label} quote.\n\nDetails:\n- Estimate: ${finalAmount}\n- Email: ${finalSelections.clientEmail}\n- Phone: ${finalSelections.clientPhone}\n\nPlease initiate standard onboarding protocol.`;
               window.dispatchEvent(new CustomEvent('delvare:autofill', { detail: { message } }));
+              window.open(`https://wa.me/919426372026?text=${encodeURIComponent(message)}`, '_blank');
             }}
           >
             Initiate Project Protocol
@@ -292,13 +313,13 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-6">
           <Badge variant="outline" className="border-primary/30 text-primary py-1.5 px-4 mb-4">
-            Intelligent Solutions
+            Digital Architecture Nexus
           </Badge>
           <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tight">
-            Quotation <span className="text-primary italic">Nexus</span>
+            AI Architect <span className="text-primary italic">Engine</span>
           </h2>
           <p className="max-w-2xl mx-auto text-xl text-muted-foreground">
-            Our AI Architect analyzes your requirements in real-time to generate a precision-engineered project estimation.
+            Our neural engine synchronizes with your business vision to output perfection in architecture, pricing, and scaling.
           </p>
         </div>
 
@@ -311,7 +332,7 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
                 <div className="w-3 h-3 rounded-full bg-green-500/50" />
               </div>
               <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
-                Secure AI Session
+                AI Instance: ALPHA-4.2
               </div>
               <Share2 className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-primary transition-colors" />
             </div>
@@ -375,7 +396,7 @@ const CostEstimatorSection = ({ onQuoteGenerated }: { onQuoteGenerated?: (data: 
                   <Input
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Provide additional details or type 'skip'..."
+                    placeholder="Nexus awaiting input..."
                     className="bg-muted/50 border-primary/20 focus-visible:ring-primary h-14 flex-1 text-lg rounded-2xl"
                   />
                   <Button type="submit" size="icon" className="shrink-0 h-14 w-14 rounded-2xl premium-gradient">
