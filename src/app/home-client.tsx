@@ -31,7 +31,17 @@ const GameSpaceSection = dynamic(() => import('@/components/sections/game-space'
   loading: () => null,
 });
 
+const CatalogSection = dynamic(() => import('@/components/sections/catalog'), {
+  ssr: false,
+  loading: () => null,
+});
+
 const ClientsSection = dynamic(() => import('@/components/sections/clients'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const TechStackSection = dynamic(() => import('@/components/sections/tech-stack'), {
   ssr: false,
   loading: () => null,
 });
@@ -47,10 +57,12 @@ export default function HomeClient() {
         <ServicesSection />
         <ProductsSection />
         <ClientsSection />
+        <TechStackSection />
         <CareerSection />
         <TechFeaturesSection />
         <CostEstimatorSection />
         <GameSpaceSection />
+        <CatalogSection />
         <ContactSection />
         <WhatsAppButton />
         <Footer />

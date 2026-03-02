@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Bot, User, Send, Sparkles, Tag } from 'lucide-react';
+import { Bot, User, Send, Sparkles, Tag, Download, Printer, Share2, Rocket, Cloud, Brain, Globe, Smartphone, Code } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 
@@ -12,32 +12,34 @@ type Message = {
   id: string;
   sender: 'ai' | 'user';
   text: string | React.ReactNode;
-  options?: { label: string; value: string }[];
+  options?: { label: string; value: string; icon?: any }[];
   type?: 'text' | 'options' | 'input' | 'result';
 };
 
 const pricingBase = {
-  website: { base: 5000, label: 'Custom Website' },
-  app: { base: 25000, label: 'Mobile App' },
-  software: { base: 15000, label: 'Custom Software' },
+  website: { base: 2500, label: 'Modern Website', icon: Globe },
+  app: { base: 15000, label: 'Mobile Application', icon: Smartphone },
+  software: { base: 12000, label: 'Enterprise Software', icon: Code },
+  ai: { base: 20000, label: 'AI/ML Integration', icon: Brain },
+  cloud: { base: 8000, label: 'Cloud Infrastructure', icon: Cloud },
+  mvp: { base: 5000, label: 'Rapid MVP development', icon: Rocket },
 };
 
 const complexityMultipliers = {
-  mvp: 1,
-  standard: 1.5,
-  enterprise: 2.5,
+  basic: 1,
+  advanced: 1.6,
+  complex: 2.8,
 };
 
 const urgencyMultipliers = {
-  normal: 1,
-  urgent: 1.3,
+  standard: 1,
+  express: 1.4,
 };
 
-const locationMultipliers = {
-  usa: 1,
-  europe: 0.9,
-  india: 0.4,
-  other: 0.8,
+const regionMultipliers = {
+  global: 1.2,
+  regional: 1,
+  local: 0.8,
 };
 
 const CostEstimatorSection = () => {
@@ -45,17 +47,20 @@ const CostEstimatorSection = () => {
     {
       id: '1',
       sender: 'ai',
-      text: "Hello! I'm Delvare's AI Estimator. I can help you calculate the cost for your next big project—websites, apps, custom software, cloud migrations, and more. Let's get started!",
+      text: "Welcome to Delvare's Nexus. I am your AI Architect. I'll help you blueprint and estimate your next breakthrough project.",
     },
     {
       id: '2',
       sender: 'ai',
-      text: "First, what type of project are you looking to build?",
+      text: "Select the core domain of your project:",
       type: 'options',
       options: [
-        { label: "Custom Website", value: "website" },
-        { label: "Mobile App", value: "app" },
-        { label: "Custom Software", value: "software" },
+        { label: "Modern Website", value: "website", icon: Globe },
+        { label: "Mobile App", value: "app", icon: Smartphone },
+        { label: "Enterprise Software", value: "software", icon: Code },
+        { label: "AI Integration", value: "ai", icon: Brain },
+        { label: "Cloud Infra", value: "cloud", icon: Cloud },
+        { label: "Rapid MVP", value: "mvp", icon: Rocket },
       ],
     },
   ]);
@@ -102,11 +107,10 @@ const CostEstimatorSection = () => {
 
   const getStepKey = (step: number) => {
     switch (step) {
-      case 0: return 'type';
+      case 0: return 'domain';
       case 1: return 'complexity';
-      case 2: return 'urgency';
-      case 3: return 'location';
-      case 4: return 'discount';
+      case 2: return 'speed';
+      case 3: return 'scale';
       default: return 'unknown';
     }
   };
@@ -123,12 +127,12 @@ const CostEstimatorSection = () => {
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "Great choice. How complex do you envision this project?",
+            text: "Exquisite. What level of complexity are we looking at?",
             type: 'options',
             options: [
-              { label: "MVP (Core Features)", value: "mvp" },
-              { label: "Standard (Fully Featured)", value: "standard" },
-              { label: "Enterprise (Large Scale)", value: "enterprise" },
+              { label: "Basic (Essential Features)", value: "basic" },
+              { label: "Advanced (Custon Workflows)", value: "advanced" },
+              { label: "Complex (Full Scale Enterprise)", value: "complex" },
             ],
           };
           break;
@@ -136,11 +140,11 @@ const CostEstimatorSection = () => {
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "Understood. What is your timeline preference?",
+            text: "Understood. How fast do you need the first deployment?",
             type: 'options',
             options: [
-              { label: "Standard Timeline", value: "normal" },
-              { label: "Urgent Delivery", value: "urgent" },
+              { label: "Standard (8-12 weeks)", value: "standard" },
+              { label: "Express (4-6 weeks)", value: "express" },
             ],
           };
           break;
@@ -148,26 +152,17 @@ const CostEstimatorSection = () => {
           aiResponse = {
             id: Date.now().toString(),
             sender: 'ai',
-            text: "And where is your business primarily located?",
+            text: "Final detail: What is the intended scale of this solution?",
             type: 'options',
             options: [
-              { label: "USA / North America", value: "usa" },
-              { label: "Europe", value: "europe" },
-              { label: "India", value: "india" },
-              { label: "Other Region", value: "other" },
+              { label: "Local (Niche Market)", value: "local" },
+              { label: "Regional (State/Country)", value: "regional" },
+              { label: "Global (World-wide)", value: "global" },
             ],
           };
           break;
         case 4:
-          aiResponse = {
-            id: Date.now().toString(),
-            sender: 'ai',
-            text: "Almost there! Do you have a discount code? If not, just type 'skip'.",
-            type: 'input',
-          };
-          break;
-        case 5:
-          const finalSelections = { ...selections, [getStepKey(4)]: lastValue };
+          const finalSelections = { ...selections, scale: lastValue };
           const result = calculateCost(finalSelections);
           aiResponse = {
             id: Date.now().toString(),
@@ -182,164 +177,201 @@ const CostEstimatorSection = () => {
       if (aiResponse) {
         setMessages([...currentMessages, aiResponse]);
       }
-    }, 1500);
+    }, 1200);
   };
 
   const calculateCost = (finalSelections: any) => {
-    const type = finalSelections.type as keyof typeof pricingBase;
+    const domain = finalSelections.domain as keyof typeof pricingBase;
     const complexity = finalSelections.complexity as keyof typeof complexityMultipliers;
-    const urgency = finalSelections.urgency as keyof typeof urgencyMultipliers;
-    const location = finalSelections.location as keyof typeof locationMultipliers;
-    const discountCode = finalSelections.discount?.toLowerCase().trim();
+    const speed = finalSelections.speed as keyof typeof urgencyMultipliers;
+    const scale = finalSelections.scale as keyof typeof regionMultipliers;
 
-    let baseCost = pricingBase[type].base;
-    let multiplier = complexityMultipliers[complexity] * urgencyMultipliers[urgency] * locationMultipliers[location];
+    const baseCost = pricingBase[domain].base;
+    const multiplier = complexityMultipliers[complexity] * urgencyMultipliers[speed] * regionMultipliers[scale];
 
-    let total = baseCost * multiplier;
-    let discountApplied = false;
+    const total = baseCost * multiplier;
+    const finalAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(total);
 
-    if (discountCode === 'delvare2026') {
-      total = total * 0.9;
-      discountApplied = true;
-    }
-
-    const currency = location === 'india' ? 'INR' : location === 'europe' ? 'EUR' : 'USD';
-    const finalAmount = new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(total);
+    const Icon = pricingBase[domain].icon;
 
     return (
-      <div className="w-full max-w-md mx-auto bg-card border border-border rounded-2xl overflow-hidden mt-6 shadow-[0_0_60px_hsl(var(--primary)/0.15)] animate-in zoom-in-95 duration-500">
-        <div className="bg-primary/10 p-5 border-b border-primary/10 flex justify-between items-center">
-          <span className="font-bold text-primary flex items-center gap-2 text-base">
-            <Sparkles className="w-5 h-5" /> Estimate Ready
-          </span>
-          <Badge variant="outline" className="bg-background text-xs">AI Generated</Badge>
-        </div>
-        <div className="p-6 space-y-4">
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Project Base</span>
-            <span>{pricingBase[type].label}</span>
-          </div>
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Complexity</span>
-            <span className="capitalize">{complexity}</span>
-          </div>
-          <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Speed</span>
-            <span className="capitalize">{urgency}</span>
-          </div>
-          {discountApplied && (
-            <div className="flex justify-between text-sm font-bold text-emerald-500">
-              <span className="flex items-center gap-1"><Tag className="w-3 h-3" /> Discount</span>
-              <span>-10% Applied</span>
+      <Card className="w-full max-w-lg mx-auto overflow-hidden mt-6 bg-gradient-to-br from-card to-card/50 border-primary/20 shadow-2xl animate-in fade-in zoom-in duration-500">
+        <div className="p-1 bg-gradient-to-r from-emerald-500 via-primary to-cyan-500" />
+        <div className="p-8 space-y-6">
+          <div className="flex justify-between items-start">
+            <div className="space-y-1">
+              <Badge variant="outline" className="text-emerald-500 border-emerald-500/20 bg-emerald-500/5">
+                Nexus Verified Estimate
+              </Badge>
+              <h3 className="text-2xl font-black mt-2">Project Quotation</h3>
             </div>
-          )}
-          <div className="pt-4 border-t border-border mt-4">
+            <div className="p-3 rounded-2xl bg-primary/10 text-primary">
+              <Icon className="w-8 h-8" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest">Domain</span>
+              <p className="font-bold">{pricingBase[domain].label}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest">Complexity</span>
+              <p className="font-bold capitalize">{complexity}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest">Pace</span>
+              <p className="font-bold capitalize">{speed}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-muted/50 border border-border/50">
+              <span className="text-xs text-muted-foreground uppercase tracking-widest">Scale</span>
+              <p className="font-bold capitalize">{scale}</p>
+            </div>
+          </div>
+
+          <div className="py-6 border-y border-border/50">
             <div className="flex justify-between items-end">
-              <span className="text-sm font-bold text-muted-foreground">Est. Total</span>
-              <span className="text-3xl font-black text-foreground">{finalAmount}</span>
+              <div>
+                <p className="text-sm text-muted-foreground">Estimated Investment</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-4xl font-black text-foreground">{finalAmount}</span>
+                  <Badge className="bg-emerald-500/20 text-emerald-500 hover:bg-emerald-500/30 border-none">+ VAT/Tax</Badge>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <Button
+              variant="outline"
+              className="gap-2 border-primary/20 hover:bg-primary/5"
+              onClick={() => window.print()}
+            >
+              <Printer className="w-4 h-4" /> Print PDF
+            </Button>
+            <Button
+              variant="outline"
+              className="gap-2 border-primary/20 hover:bg-primary/5"
+            >
+              <Download className="w-4 h-4" /> Catalog
+            </Button>
+          </div>
+
           <Button
-            className="w-full font-bold mt-4 h-12 text-base"
-            size="lg"
+            className="w-full font-bold h-14 text-lg premium-gradient shadow-lg shadow-primary/20"
             onClick={() => {
-              const message = `I just used the AI Estimator for a ${pricingBase[type].label}. \n\nDetails:\n- Project: ${pricingBase[type].label}\n- Complexity: ${complexity.charAt(0).toUpperCase() + complexity.slice(1)}\n- Estimate: ${finalAmount}\n\nI would like to discuss this project further.`;
+              const message = `I just generated a quotation for a ${pricingBase[domain].label}.\n\nConfig:\n- Complexity: ${complexity}\n- Pace: ${speed}\n- Scale: ${scale}\n- Estimate: ${finalAmount}\n\nLet's build this.`;
               window.dispatchEvent(new CustomEvent('delvare:autofill', { detail: { message } }));
             }}
           >
-            Book Consultation
+            Initiate Project Protocol
           </Button>
         </div>
-      </div>
+      </Card>
     );
   };
 
   return (
-    <section id="estimator" className="w-full py-32 sm:py-40 relative overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,hsl(var(--primary)/0.08),transparent)] pointer-events-none" />
-      <div className="container mx-auto px-4 relative z-10 max-w-4xl">
+    <section id="estimator" className="w-full py-32 relative overflow-hidden bg-background">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,hsl(var(--primary)/0.1),transparent_50%)]" />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 space-y-6">
-          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary/10 text-primary mb-4">
-            <Bot className="w-10 h-10" />
-          </div>
-          <Badge variant="outline" className="border-emerald-500/30 text-emerald-500 mb-2">
-            Instant Quote
+          <Badge variant="outline" className="border-primary/30 text-primary py-1.5 px-4 mb-4">
+            Intelligent Solutions
           </Badge>
-          <h2 className="font-headline text-4xl md:text-6xl lg:text-7xl font-black tracking-tight">
-            AI Cost Estimator
+          <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tight">
+            Quotation <span className="text-primary italic">Nexus</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-xl text-muted-foreground leading-relaxed">
-            Chat with our intelligent agent to get an instant quote. We estimate <strong className="text-foreground">websites</strong>, <strong className="text-foreground">apps</strong>, <strong className="text-foreground">custom software</strong>, <strong className="text-foreground">cloud migrations</strong>, and more.
+          <p className="max-w-2xl mx-auto text-xl text-muted-foreground">
+            Our AI Architect analyzes your requirements in real-time to generate a precision-engineered project estimation.
           </p>
         </div>
 
-        <Card className="min-h-[640px] flex flex-col glass-card border-foreground/10 dark:border-white/10 shadow-[0_0_80px_hsl(var(--primary)/0.1)] relative overflow-hidden">
-          <div ref={chatContainerRef} className="flex-grow p-8 space-y-6 overflow-y-auto h-[540px] scrollbar-hide scroll-smooth">
-            {messages.map((msg) => (
-              <div key={msg.id} className={cn("flex gap-4", msg.sender === 'user' ? "justify-end" : "justify-start")}>
-                {msg.sender === 'ai' && (
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 mt-1">
-                    <Bot className="w-6 h-6 text-emerald-500" />
-                  </div>
-                )}
-                <div className={cn(
-                  "max-w-[85%] p-5 rounded-2xl text-base shadow-sm",
-                  msg.sender === 'ai' ? "bg-secondary text-secondary-foreground rounded-tl-none" : "bg-primary text-primary-foreground rounded-tr-none"
-                )}>
-                  {msg.text}
-                </div>
-                {msg.sender === 'user' && (
-                  <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 mt-1">
-                    <User className="w-6 h-6 text-primary" />
-                  </div>
-                )}
+        <div className="max-w-4xl mx-auto">
+          <Card className="flex flex-col glass-card border-foreground/5 dark:border-white/5 shadow-2xl overflow-hidden min-h-[700px]">
+            <div className="flex items-center justify-between px-6 py-4 bg-background/50 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                <div className="w-3 h-3 rounded-full bg-green-500/50" />
               </div>
-            ))}
-
-            {isTyping && (
-              <div className="flex gap-4 justify-start animate-fade-in-up">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
-                  <Bot className="w-6 h-6 text-emerald-500" />
-                </div>
-                <div className="bg-secondary text-secondary-foreground p-5 rounded-2xl rounded-tl-none flex items-center gap-2 h-14">
-                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <div className="w-2.5 h-2.5 bg-foreground/30 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                </div>
+              <div className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
+                Secure AI Session
               </div>
-            )}
-          </div>
+              <Share2 className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-primary transition-colors" />
+            </div>
 
-          <div className="p-6 border-t border-border bg-background/60 backdrop-blur-md">
-            {messages[messages.length - 1]?.type === 'options' && !isTyping ? (
-              <div className="flex flex-wrap gap-3 justify-center">
-                {messages[messages.length - 1].options?.map((opt) => (
-                  <Button
-                    key={opt.value}
-                    variant="outline"
-                    size="lg"
-                    className="rounded-full border-primary/20 hover:bg-primary/10 hover:border-primary px-6"
-                    onClick={() => handleOptionClick(opt.value, opt.label)}
-                  >
-                    {opt.label}
+            <div ref={chatContainerRef} className="flex-grow p-8 space-y-8 overflow-y-auto h-[500px] scrollbar-hide">
+              {messages.map((msg) => (
+                <div key={msg.id} className={cn("flex gap-5 animate-in fade-in slide-in-from-bottom-4 duration-500", msg.sender === 'user' ? "justify-end" : "justify-start")}>
+                  {msg.sender === 'ai' && (
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+                      <Bot className="w-7 h-7 text-white" />
+                    </div>
+                  )}
+                  <div className={cn(
+                    "max-w-[85%] p-6 rounded-3xl text-lg shadow-sm leading-relaxed",
+                    msg.sender === 'ai'
+                      ? "bg-muted/80 backdrop-blur-sm text-foreground rounded-tl-none border border-border/50"
+                      : "premium-gradient text-white rounded-tr-none shadow-xl shadow-primary/20"
+                  )}>
+                    {msg.text}
+                  </div>
+                  {msg.sender === 'user' && (
+                    <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center shrink-0 border border-border">
+                      <User className="w-7 h-7 text-foreground" />
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {isTyping && (
+                <div className="flex gap-5 justify-start">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-primary flex items-center justify-center shrink-0">
+                    <Bot className="w-7 h-7 text-white" />
+                  </div>
+                  <div className="bg-muted/80 p-6 rounded-3xl rounded-tl-none flex items-center gap-3 h-16 border border-border/50">
+                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '200ms' }} />
+                    <div className="w-2.5 h-2.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: '400ms' }} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="p-8 border-t border-border bg-background/80 backdrop-blur-xl">
+              {messages[messages.length - 1]?.type === 'options' && !isTyping ? (
+                <div className="flex flex-wrap gap-4 justify-center">
+                  {messages[messages.length - 1].options?.map((opt) => (
+                    <Button
+                      key={opt.value}
+                      variant="outline"
+                      size="lg"
+                      className="rounded-2xl border-primary/20 hover:bg-primary/10 hover:border-primary px-8 h-14 text-base font-bold transition-all hover:-translate-y-1"
+                      onClick={() => handleOptionClick(opt.value, opt.label)}
+                    >
+                      {opt.icon && <opt.icon className="w-5 h-5 mr-3 text-primary" />}
+                      {opt.label}
+                    </Button>
+                  ))}
+                </div>
+              ) : messages[messages.length - 1]?.type === 'input' && !isTyping ? (
+                <form onSubmit={handleInputSubmit} className="flex gap-4">
+                  <Input
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    placeholder="Provide additional details or type 'skip'..."
+                    className="bg-muted/50 border-primary/20 focus-visible:ring-primary h-14 flex-1 text-lg rounded-2xl"
+                  />
+                  <Button type="submit" size="icon" className="shrink-0 h-14 w-14 rounded-2xl premium-gradient">
+                    <Send className="w-6 h-6" />
                   </Button>
-                ))}
-              </div>
-            ) : messages[messages.length - 1]?.type === 'input' && !isTyping ? (
-              <form onSubmit={handleInputSubmit} className="flex gap-3">
-                <Input
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type here or 'skip'..."
-                  className="bg-background border-primary/20 focus-visible:ring-primary h-12 flex-1"
-                />
-                <Button type="submit" size="icon" className="shrink-0 h-12 w-12">
-                  <Send className="w-5 h-5" />
-                </Button>
-              </form>
-            ) : null}
-          </div>
-        </Card>
+                </form>
+              ) : null}
+            </div>
+          </Card>
+        </div>
       </div>
     </section>
   );
