@@ -6,10 +6,12 @@ import HeroSection from '@/components/sections/hero';
 import KeywordMarquee from '@/components/sections/keywords';
 import ServicesSection from '@/components/sections/services';
 import ProductsSection from '@/components/sections/products';
+import BlogSection from '@/components/sections/blog';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/footer';
 import BackgroundDecor from '@/components/background-decor';
-import WhatsAppButton from '@/components/whatsapp-button';
+import FloatingActionDock from '@/components/floating-action-dock';
+import CodingLearningHub from '@/components/coding-learning-hub';
 
 const CareerSection = dynamic(() => import('@/components/sections/careers'), {
   ssr: false,
@@ -26,22 +28,12 @@ const CostEstimatorSection = dynamic(() => import('@/components/sections/cost-es
   loading: () => null,
 });
 
-const GameSpaceSection = dynamic(() => import('@/components/sections/game-space'), {
-  ssr: false,
-  loading: () => null,
-});
-
 const CatalogSection = dynamic(() => import('@/components/sections/catalog'), {
   ssr: false,
   loading: () => null,
 });
 
-const ClientsSection = dynamic(() => import('@/components/sections/clients'), {
-  ssr: false,
-  loading: () => null,
-});
-
-const TechStackSection = dynamic(() => import('@/components/sections/tech-stack'), {
+const EcosystemSection = dynamic(() => import('@/components/sections/ecosystem'), {
   ssr: false,
   loading: () => null,
 });
@@ -61,15 +53,15 @@ export default function HomeClient() {
         <KeywordMarquee />
         <ServicesSection />
         <ProductsSection />
-        <ClientsSection />
-        <TechStackSection />
+        <EcosystemSection />
         <CareerSection />
         <TechFeaturesSection />
-        <CostEstimatorSection onQuoteGenerated={setQuotationData} />
-        <GameSpaceSection />
         <CatalogSection />
+        <BlogSection />
         <ContactSection />
-        <WhatsAppButton />
+        <CostEstimatorSection />
+        <CodingLearningHub />
+        <FloatingActionDock />
         <Footer />
       </main>
 

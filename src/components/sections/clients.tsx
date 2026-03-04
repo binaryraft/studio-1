@@ -1,7 +1,7 @@
 'use client';
 
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Globe } from 'lucide-react';
 
 const clients = [
   { name: 'Laynered', url: 'https://laynered.com' },
@@ -22,24 +22,17 @@ const getFaviconUrl = (domain: string) => {
 
 const ClientsSection = () => {
   return (
-    <section id="clients" className="w-full py-24 sm:py-32 relative overflow-hidden bg-background">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 border-emerald-500/30 text-emerald-500">
-            Trusted by
-          </Badge>
-          <h2 className="font-headline text-4xl md:text-6xl font-black tracking-tight mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
-              Clients We Build For
-            </span>
-          </h2>
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground">
-            From startups to enterprises, we deliver solutions that scale.
-          </p>
-        </div>
+    <section id="clients" className="w-full py-32 relative overflow-hidden bg-[#fafafa]">
+      <div className="container mx-auto px-4 relative z-10 text-center">
+        <Badge variant="outline" className="mb-8 border-border py-1.5 px-5 text-[10px] font-black tracking-[0.3em] uppercase text-muted-foreground">
+          Portfolio
+        </Badge>
+        <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter mb-10 text-foreground leading-none">
+          Trusted by <br />
+          <span className="text-muted-foreground font-light italic tracking-tight">Leaders.</span>
+        </h2>
 
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 mt-16 max-w-5xl mx-auto">
           {clients.map((client) => {
             const faviconUrl = getFaviconUrl(client.url);
             return (
@@ -48,24 +41,24 @@ const ClientsSection = () => {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center gap-3 p-6 rounded-2xl bg-card/50 dark:bg-card/30 border border-foreground/5 dark:border-white/5 hover:border-emerald-500/30 hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-300 min-w-[140px]"
+                className="group relative flex items-center gap-5 p-5 px-7 rounded-[2rem] bg-white border border-border hover:border-primary/20 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 min-w-[220px]"
               >
-                <div className="w-16 h-16 rounded-xl bg-background/80 dark:bg-background/50 flex items-center justify-center overflow-hidden border border-foreground/5 dark:border-white/5 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center overflow-hidden border border-border group-hover:scale-105 transition-transform duration-500">
                   <img
                     src={faviconUrl}
                     alt={`${client.name} favicon`}
-                    className="w-10 h-10 object-contain"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      target.parentElement?.classList.add('items-center', 'justify-center');
-                    }}
+                    className="w-8 h-8 object-contain"
                   />
                 </div>
-                <span className="text-sm font-bold text-foreground group-hover:text-emerald-500 transition-colors truncate max-w-[120px]">
-                  {client.name}
-                </span>
-                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col items-start">
+                  <span className="text-sm font-black tracking-tight text-foreground group-hover:text-primary transition-colors">
+                    {client.name}
+                  </span>
+                  <span className="text-[10px] font-bold text-muted-foreground flex items-center gap-1">
+                    Verified Partner
+                  </span>
+                </div>
+                <ExternalLink className="absolute top-4 right-4 w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-all duration-500" />
               </a>
             );
           })}

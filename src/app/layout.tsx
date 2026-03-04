@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
+  keywords: siteConfig.keywords as unknown as string[],
   authors: [{ name: "Delvare MNC" }],
   creator: "Delvare MNC",
 
@@ -83,8 +83,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-body antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          forcedTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 const technologies = [
-    { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000', darkIcon: 'https://cdn.simpleicons.org/nextdotjs/ffffff' },
+    { name: 'Next.js', icon: 'https://cdn.simpleicons.org/nextdotjs/000000' },
     { name: 'Gatsby', icon: 'https://cdn.simpleicons.org/gatsby/663399' },
     { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
     { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
@@ -16,90 +16,82 @@ const technologies = [
     { name: 'Java', icon: 'https://cdn.simpleicons.org/openjdk/007396' },
     { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB' },
     { name: 'C++', icon: 'https://cdn.simpleicons.org/cplusplus/00599C' },
-    { name: 'C', icon: 'https://cdn.simpleicons.org/c/A8B9CC' },
-    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/232F3E', darkIcon: 'https://cdn.simpleicons.org/amazonaws/ffffff' },
+    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/232F3E' },
     { name: 'Azure', icon: 'https://cdn.simpleicons.org/microsoftazure/0078D4' },
-    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai/412991', darkIcon: 'https://cdn.simpleicons.org/openai/ffffff' },
+    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai/412991' },
     { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker/2496ED' },
     { name: 'Kubernetes', icon: 'https://cdn.simpleicons.org/kubernetes/326CE5' },
+    { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql/4169E1' },
+    { name: 'Redis', icon: 'https://cdn.simpleicons.org/redis/DC382D' },
+    { name: 'Vercel', icon: 'https://cdn.simpleicons.org/vercel/000000' },
 ];
 
 const TechStackSection = () => {
     return (
-        <section className="w-full py-24 bg-background border-y border-border overflow-hidden">
+        <section className="w-full py-32 bg-white border-y border-border overflow-hidden">
             <div className="container mx-auto px-4 mb-20 text-center">
-                <Badge variant="outline" className="mb-6 border-primary/30 text-primary px-4 py-1">
-                    Mastering the Future
+                <Badge variant="outline" className="mb-8 border-border py-1.5 px-5 text-[10px] font-black tracking-[0.3em] uppercase text-muted-foreground">
+                    Technical Foundation
                 </Badge>
-                <h2 className="font-headline text-4xl md:text-6xl font-black mb-6 tracking-tight">
-                    Technologies We Master
+                <h2 className="font-headline text-5xl md:text-7xl font-black mb-10 tracking-tight text-foreground leading-none">
+                    Crafted with <br />
+                    <span className="text-muted-foreground font-light italic tracking-tight">Precision.</span>
                 </h2>
-                <p className="text-muted-foreground text-xl max-w-2xl mx-auto leading-relaxed">
-                    We leverage the most advanced frameworks and tools to build robust, scalable, and futuristic solutions for our clients.
+                <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                    We deploy world-class engineering stacks to ensure your platforms are resilient, modern, and high-performance.
                 </p>
             </div>
 
-            <div className="relative flex overflow-x-hidden group">
-                <div className="animate-marquee whitespace-nowrap flex items-center py-6">
+            {/* Marquee 1 */}
+            <div className="relative flex overflow-x-hidden group py-4">
+                <div className="animate-marquee whitespace-nowrap flex items-center">
                     {[...technologies, ...technologies].map((tech, idx) => (
-                        <div
-                            key={`${tech.name}-${idx}`}
-                            className="flex flex-col items-center gap-4 px-12 group/item transition-all duration-500"
-                        >
-                            <div className="w-20 h-20 flex items-center justify-center rounded-3xl bg-card border border-border shadow-sm group-hover/item:border-primary/50 group-hover/item:shadow-[0_0_30px_hsl(var(--primary)/0.2)] group-hover/item:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
-                                <img
-                                    src={tech.icon}
-                                    alt={tech.name}
-                                    className={cn("w-10 h-10 object-contain transition-all duration-300", tech.darkIcon && "dark:hidden")}
-                                />
-                                {tech.darkIcon && (
-                                    <img
-                                        src={tech.darkIcon}
-                                        alt={tech.name}
-                                        className="w-10 h-10 object-contain hidden dark:block transition-all duration-300"
-                                    />
-                                )}
-                            </div>
-                            <span className="text-sm font-bold tracking-widest uppercase text-muted-foreground group-hover/item:text-foreground transition-colors">
-                                {tech.name}
-                            </span>
-                        </div>
+                        <TechIconCard key={`${tech.name}-${idx}`} tech={tech} />
+                    ))}
+                </div>
+                {/* Mirror for smooth loop */}
+                <div className="absolute top-0 animate-marquee whitespace-nowrap flex items-center" style={{ left: '100%' }}>
+                    {[...technologies, ...technologies].map((tech, idx) => (
+                        <TechIconCard key={`mirror-${tech.name}-${idx}`} tech={tech} />
                     ))}
                 </div>
             </div>
 
-            <div className="relative flex overflow-x-hidden mt-12 group">
-                <div className="animate-marquee-reverse whitespace-nowrap flex items-center py-6">
+            {/* Marquee 2 - Reverse */}
+            <div className="relative flex overflow-x-hidden mt-10 group py-4">
+                <div className="animate-marquee-reverse whitespace-nowrap flex items-center">
                     {[...[...technologies].reverse(), ...[...technologies].reverse()].map((tech, idx) => (
-                        <div
-                            key={`rev-${tech.name}-${idx}`}
-                            className="flex flex-col items-center gap-4 px-12 group/item transition-all duration-500"
-                        >
-                            <div className="w-20 h-20 flex items-center justify-center rounded-3xl bg-card border border-border shadow-sm group-hover/item:border-emerald-500/50 group-hover/item:shadow-[0_0_30px_rgba(16,185,129,0.2)] group-hover/item:-translate-y-2 transition-all duration-300 relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity" />
-                                <img
-                                    src={tech.icon}
-                                    alt={tech.name}
-                                    className={cn("w-10 h-10 object-contain transition-all duration-300", tech.darkIcon && "dark:hidden")}
-                                />
-                                {tech.darkIcon && (
-                                    <img
-                                        src={tech.darkIcon}
-                                        alt={tech.name}
-                                        className="w-10 h-10 object-contain hidden dark:block transition-all duration-300"
-                                    />
-                                )}
-                            </div>
-                            <span className="text-sm font-bold tracking-widest uppercase text-muted-foreground group-hover/item:text-foreground transition-colors">
-                                {tech.name}
-                            </span>
-                        </div>
+                        <TechIconCard key={`rev-${tech.name}-${idx}`} tech={tech} />
+                    ))}
+                </div>
+                <div className="absolute top-0 animate-marquee-reverse whitespace-nowrap flex items-center" style={{ left: '100%' }}>
+                    {[...[...technologies].reverse(), ...[...technologies].reverse()].map((tech, idx) => (
+                        <TechIconCard key={`rev-mirror-${tech.name}-${idx}`} tech={tech} />
                     ))}
                 </div>
             </div>
+
+            {/* Overlay gradients for marquee fade */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
         </section>
     );
 };
+
+const TechIconCard = ({ tech }: { tech: typeof technologies[0] }) => (
+    <div className="flex flex-col items-center gap-6 px-14 transition-all duration-500 group/item">
+        <div className="w-24 h-24 flex items-center justify-center rounded-[2rem] bg-[#fdfdfd] border border-border/80 shadow-sm group-hover/item:border-primary/20 group-hover/item:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] group-hover/item:-translate-y-2 transition-all duration-500 relative overflow-hidden">
+            <div className="absolute inset-0 bg-primary/[0.02] opacity-0 group-hover/item:opacity-100 transition-opacity" />
+            <img
+                src={tech.icon}
+                alt={tech.name}
+                className="w-10 h-10 object-contain grayscale opacity-60 group-hover/item:grayscale-0 group-hover/item:opacity-100 transition-all duration-500"
+            />
+        </div>
+        <span className="text-[9px] font-black tracking-[0.2em] uppercase text-muted-foreground/60 group-hover/item:text-primary transition-colors">
+            {tech.name}
+        </span>
+    </div>
+);
 
 export default TechStackSection;

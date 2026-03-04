@@ -1,71 +1,89 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Code, Smartphone, Cloud, BarChart, ShieldCheck, ArrowRight, Zap, Check, Globe } from 'lucide-react';
+import { Cloud, BarChart, ShieldCheck, ArrowRight, Zap, Check, Globe, Layers, Shield, Database, Brain, GitBranch } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLocation } from '@/hooks/use-location';
 
 const services = [
   {
-    title: "Software Development",
-    description: "Enterprise-grade architectures built for massive scale.",
+    title: "Software for Business",
+    slug: "software-design",
+    description: "We build strong, safe software that grows with your business and works everywhere.",
     price: 9999,
-    icon: <Code className="w-8 h-8" />,
-    features: ["Custom Architecture", "High Scalability", "Microservices"],
-    gradient: "from-blue-500 to-cyan-400",
-    colSpan: "lg:col-span-2",
+    icon: <Database className="w-8 h-8" />,
+    features: ["Custom Software", "Easy to Scale", "Works Together"],
+    accent: "bg-primary shadow-primary/20",
   },
   {
-    title: "Websites & Portals",
-    description: "Award-winning designs that convert visitors.",
+    title: "Websites & Apps",
+    slug: "software-design",
+    description: "Fast, beautiful websites that help you find more customers and look great on phones.",
     price: 4999,
-    icon: <Smartphone className="w-8 h-8" />,
-    features: ["SEO Optimized", "Interactive UI", "CMS Integration"],
-    gradient: "from-purple-500 to-pink-500",
-    colSpan: "lg:col-span-1",
+    icon: <Layers className="w-8 h-8" />,
+    features: ["Super Fast", "Modern Look", "Easy to Manage"],
+    accent: "bg-brand-dark shadow-black/20",
   },
   {
-    title: "Cloud Infrastructure",
-    description: "Secure, reliable, and serverless solution deployment.",
+    title: "Cloud Hosting",
+    slug: "cloud-hosting",
+    description: "Simple, fast cloud setups that keep your site online 24/7 without costing a fortune.",
     price: 2999,
     icon: <Cloud className="w-8 h-8" />,
-    features: ["AWS/Azure", "Auto-scaling", "Cost Optimization"],
-    gradient: "from-orange-500 to-amber-400",
-    colSpan: "lg:col-span-1",
+    features: ["Fast Loading", "Safe Backups", "Low Cost"],
+    accent: "bg-primary/80 shadow-primary/10",
   },
   {
-    title: "SLA Maintenance",
-    description: "24/7 uptime guarantees and rapid incident response.",
+    title: "Expert Maintenance",
+    slug: "technical-sla",
+    description: "We watch over your site 24/7 so you never have to worry about tech problems again.",
     price: 499,
-    icon: <Zap className="w-8 h-8" />,
-    features: ["24/7 Support", "Performance Monitoring", "Security Patches"],
-    gradient: "from-emerald-500 to-green-400",
-    colSpan: "lg:col-span-2",
+    icon: <Shield className="w-8 h-8" />,
+    features: ["24/7 Support", "Updates Included", "Safety First"],
+    accent: "bg-brand-dark shadow-black/20",
   },
   {
-    title: "Business Analysis",
-    description: "Data-driven insights to unlock new growth channels.",
+    title: "Business Advice",
+    slug: "technical-consulting",
+    description: "We help you understand your data and find the best ways to grow your company.",
     price: 1499,
     icon: <BarChart className="w-8 h-8" />,
-    features: ["Market Research", "Process Optimization", "Growth Strategy"],
-    gradient: "from-indigo-500 to-violet-500",
-    colSpan: "lg:col-span-1",
+    features: ["Search Growth", "Save Money", "New Customers"],
+    accent: "bg-primary/60 shadow-primary/5",
   },
   {
-    title: "Security Engineering",
-    description: "Military-grade protection for your digital assets.",
+    title: "Safety & Protection",
+    slug: "cyber-security",
+    description: "We protect your data and your customers from hackers with the best security tools.",
     price: 3499,
     icon: <ShieldCheck className="w-8 h-8" />,
-    features: ["Penetration Testing", "Compliance", "Threat Detection"],
-    gradient: "from-red-500 to-rose-500",
-    colSpan: "lg:col-span-2",
+    features: ["Hacker Proof", "Data Privacy", "Safe Shopping"],
+    accent: "bg-black shadow-black/20",
+  },
+  {
+    title: "AI Ecosystems",
+    slug: "ai-ecosystems",
+    description: "Proprietary model training and neural network automation for enterprise.",
+    price: 7999,
+    icon: <Brain className="w-8 h-8" />,
+    features: ["Custom LLMs", "Neural Core", "Predictive ML"],
+    accent: "bg-purple-600 shadow-purple-600/20",
+  },
+  {
+    title: "Legacy Migration",
+    slug: "legacy-migration",
+    description: "Seamless architectural transformation of mature software assets.",
+    price: 5999,
+    icon: <GitBranch className="w-8 h-8" />,
+    features: ["Zero-Downtime", "Cloud Native", "Data Integrity"],
+    accent: "bg-indigo-600 shadow-indigo-600/20",
   },
 ];
 
-// Comprehensive pricing database mock
 const pricingData: Record<string, { currency: string, symbol: string, rate: number, name: string }> = {
   'US': { currency: 'USD', symbol: '$', rate: 1, name: 'United States' },
   'GB': { currency: 'GBP', symbol: '£', rate: 0.79, name: 'United Kingdom' },
@@ -77,19 +95,23 @@ const pricingData: Record<string, { currency: string, symbol: string, rate: numb
   'CN': { currency: 'CNY', symbol: '¥', rate: 7.2, name: 'China' },
   'AE': { currency: 'AED', symbol: 'dh', rate: 3.67, name: 'UAE' },
   'SG': { currency: 'SGD', symbol: 'S$', rate: 1.34, name: 'Singapore' },
-  'DE': { currency: 'EUR', symbol: '€', rate: 0.92, name: 'Germany' }, // Fallback to EU currency
-  'FR': { currency: 'EUR', symbol: '€', rate: 0.92, name: 'France' },
-  // Default fallback
   'Global': { currency: 'USD', symbol: '$', rate: 1, name: 'Global' }
 };
 
 const ServicesSection = () => {
   const { countryCode, isLoading } = useLocation();
   const [currentRegion, setCurrentRegion] = useState('Global');
+  const [showSpecs, setShowSpecs] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredServices = services.filter(s =>
+    s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    s.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    s.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   useEffect(() => {
     if (!isLoading && countryCode) {
-      // Check if exact code exists, else check for EU countries or fallback
       if (pricingData[countryCode]) {
         setCurrentRegion(countryCode);
       } else if (['DE', 'FR', 'IT', 'ES', 'NL'].includes(countryCode)) {
@@ -107,115 +129,260 @@ const ServicesSection = () => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(value);
   };
 
+  const scroll = (direction: 'left' | 'right') => {
+    const container = document.getElementById('services-carousel');
+    if (container) {
+      const scrollAmount = direction === 'left' ? -400 : 400;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="services" className="w-full relative py-32 overflow-hidden bg-background">
-      {/* Abstract Background Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2 -translate-x-1/2" />
+    <section id="services" className="w-full relative py-20 lg:py-32 overflow-hidden bg-[#fafafa]">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none opacity-40" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none opacity-40" />
+
+      {/* Modern Mesh Grid */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div className="max-w-3xl">
-            <Badge variant="outline" className="mb-4 border-emerald-500/30 text-emerald-500 animate-fade-in-up">
-              Engineering the Possibility
-            </Badge>
-            <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tight mb-6 animate-fade-in-up [animation-delay:100ms]">
-              Solutions <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">
-                Beyond Limits.
-              </span>
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-primary/10 mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Capabilities Explorer v2.0</span>
+            </div>
+            <h2 className="font-headline text-4xl md:text-6xl font-black tracking-tighter mb-6 text-foreground">
+              Elite <span className="text-primary italic font-light">Capabilities </span>
+              <span className="text-muted-foreground/40 font-thin">Protocol.</span>
             </h2>
-            <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in-up [animation-delay:200ms]">
-              We deliver <strong className="text-foreground">AI integration</strong>, <strong className="text-foreground">cloud infrastructure</strong>, <strong className="text-foreground">automations</strong>, <strong className="text-foreground">custom software</strong>, <strong className="text-foreground">websites</strong>, <strong className="text-foreground">applications</strong>, <strong className="text-foreground">maintenance</strong>, <strong className="text-foreground">migration</strong>, <strong className="text-foreground">consulting</strong>, and <strong className="text-foreground">security</strong>—full-cycle services that adapt to your business and scale with your ambition.
-            </p>
+
+            {/* Search Input for Tool Feel */}
+            <div className="relative max-w-md group">
+              <input
+                type="text"
+                placeholder="Search protocols (e.g. AI, Cloud, Security)..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-12 bg-white border border-border rounded-xl px-12 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+              />
+              <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+                  <Zap className="w-4 h-4" />
+                </button>
+              )}
+            </div>
           </div>
 
-          {/* Region Indicator */}
-          <div className="flex flex-col items-end gap-2 animate-fade-in-up [animation-delay:300ms]">
-            {currentRegion === 'IN' && (
-              <Badge className="bg-emerald-500 text-white border-none animate-pulse">
-                Special Offer: India Launch
-              </Badge>
-            )}
-            <div className="flex items-center gap-3 p-2 pr-4 bg-secondary/30 backdrop-blur-md rounded-full border border-foreground/10 dark:border-white/10">
-              <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                <Globe className="w-4 h-4" />
-              </div>
-              <div className="text-sm">
-                <span className="block text-xs text-muted-foreground uppercase font-bold tracking-wider">Region Detected</span>
-                <span className="font-bold text-foreground">
-                  {isLoading ? 'Locating...' : (pricingData[currentRegion]?.name || 'Global')}
-                </span>
-              </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-border shadow-sm">
+              <Button
+                variant={!showSpecs ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setShowSpecs(false)}
+                className="rounded-lg text-[10px] font-black uppercase tracking-widest px-4"
+              >
+                Concepts
+              </Button>
+              <Button
+                variant={showSpecs ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setShowSpecs(true)}
+                className="rounded-lg text-[10px] font-black uppercase tracking-widest px-4"
+              >
+                Specs
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button size="icon" variant="outline" className="rounded-full border-border hover:bg-secondary transition-all" onClick={() => scroll('left')}>
+                <ArrowRight className="w-5 h-5 rotate-180" />
+              </Button>
+              <Button size="icon" variant="outline" className="rounded-full border-border hover:bg-secondary transition-all" onClick={() => scroll('right')}>
+                <ArrowRight className="w-5 h-5" />
+              </Button>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {services.map((service, idx) => (
-            <div key={idx} className={cn("group relative animate-fade-in-up", service.colSpan)} style={{ animationDelay: `${idx * 100}ms` }}>
-              <div className={cn(
-                "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-xl rounded-3xl",
-                service.gradient
-              )} />
-              <Card className="h-full bg-card/40 backdrop-blur-xl border-foreground/10 dark:border-white/10 overflow-hidden relative transition-all duration-500 group-hover:translate-y-[-5px] group-hover:border-foreground/20 dark:group-hover:border-white/20 shadow-lg hover:shadow-2xl">
-                {/* Card Inner Glow */}
-                <div className={cn("absolute top-0 right-0 w-64 h-64 bg-gradient-to-br opacity-5 group-hover:opacity-20 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-500", service.gradient)} />
-
-                <CardHeader className="relative z-10 pb-2">
-                  <div className="flex justify-between items-start">
-                    <div className={cn("w-14 h-14 rounded-2xl flex items-center justify-center mb-6 text-white bg-gradient-to-br shadow-lg group-hover:scale-110 transition-transform duration-500", service.gradient)}>
+        {/* Carousel Container */}
+        <div
+          id="services-carousel"
+          className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar touch-pan-x overscroll-x-contain"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {filteredServices.length > 0 ? (
+            filteredServices.map((service, idx) => (
+              <div
+                key={idx}
+                className="min-w-[85vw] md:min-w-[420px] lg:min-w-[480px] snap-center md:snap-start"
+              >
+                <Card className="group h-[520px] bg-white border border-border/60 hover:border-primary/30 overflow-hidden relative transition-all duration-500 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] flex flex-col">
+                  {/* Visual Header */}
+                  <div className="h-48 relative overflow-hidden bg-slate-100">
+                    <div className="absolute inset-0 z-0">
+                      <img
+                        src={idx % 2 === 0 ? "/assets/nanotech_abstract_1_1772615413352.png" : "/assets/nanotech_curved_2_1772615432367.png"}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/5 to-transparent z-[1]" />
+                    <div className={cn("absolute top-6 left-6 w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 z-[2]", service.accent)}>
                       {service.icon}
                     </div>
-                    <Badge variant="secondary" className="bg-foreground/5 dark:bg-white/5 hover:bg-foreground/10 dark:hover:bg-white/10 text-muted-foreground font-normal backdrop-blur-md border-foreground/5 dark:border-white/5">
-                      Service
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-2xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">{service.title}</CardTitle>
-                  <CardDescription className="text-base text-muted-foreground/80">{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10 space-y-8 pt-4">
-                  <div className="space-y-3">
-                    {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3 text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                        <div className="w-5 h-5 rounded-full bg-foreground/5 dark:bg-white/5 flex items-center justify-center text-emerald-500">
-                          <Check className="w-3 h-3" />
-                        </div>
-                        {feature}
-                      </div>
-                    ))}
+                    <div className="absolute top-6 right-6 z-[2]">
+                      <Badge className="bg-white/90 backdrop-blur-md text-foreground border-border text-[9px] font-black py-1 px-3 uppercase tracking-widest shadow-sm">
+                        P{idx + 1}.Protocol
+                      </Badge>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-6 border-t border-foreground/5 dark:border-white/5">
-                    <div className="flex flex-col">
-                      <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-1">Starting from</p>
-                      <div className="flex items-baseline gap-2">
-                        <p className="text-2xl font-black text-foreground group-hover:text-emerald-400 transition-colors duration-300">
-                          {currentRegion === 'IN' ? '₹10,000' : formatPrice(service.price)}
+                  <div className="flex-grow p-8 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-2xl font-black tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-primary font-black text-sm">
+                          {currentRegion === 'IN' ? '₹10k+' : `${formatPrice(service.price).split('.')[0]}+`}
                         </p>
-                        {currentRegion === 'IN' && (
-                          <span className="text-sm text-muted-foreground line-through opacity-70">
-                            {formatPrice(service.price)}
-                          </span>
-                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed font-medium">
+                        {service.description}
+                      </p>
+
+                      {/* Dynamic Specs or Concepts View */}
+                      <div className="pt-4 h-24 overflow-hidden relative">
+                        <div className={cn("grid grid-cols-1 gap-2 transition-all duration-500", showSpecs ? "opacity-0 -translate-y-4 scale-95 pointer-events-none" : "opacity-100 transform-none")}>
+                          {service.features.map((feature, i) => (
+                            <div key={i} className="flex items-center gap-3 text-xs font-bold text-muted-foreground">
+                              <Check className="w-3 h-3 text-primary" />
+                              {feature}
+                            </div>
+                          ))}
+                        </div>
+                        <div className={cn("absolute inset-0 grid grid-cols-2 gap-2 transition-all duration-500", !showSpecs ? "opacity-0 translate-y-4 scale-95 pointer-events-none" : "opacity-100 transform-none")}>
+                          <div className="bg-secondary/30 p-2 rounded-lg border border-primary/5">
+                            <p className="text-[8px] font-black uppercase text-primary mb-1">SLI Availability</p>
+                            <p className="text-xs font-bold">99.98% Active</p>
+                          </div>
+                          <div className="bg-secondary/30 p-2 rounded-lg border border-primary/5">
+                            <p className="text-[8px] font-black uppercase text-primary mb-1">Node Latency</p>
+                            <p className="text-xs font-bold">&lt; 40ms Ref</p>
+                          </div>
+                          <div className="bg-secondary/30 p-2 rounded-lg border border-primary/5">
+                            <p className="text-[8px] font-black uppercase text-primary mb-1">Architecture</p>
+                            <p className="text-xs font-bold">Cloud-Native</p>
+                          </div>
+                          <div className="bg-secondary/30 p-2 rounded-lg border border-primary/5">
+                            <p className="text-[8px] font-black uppercase text-primary mb-1">Security</p>
+                            <p className="text-xs font-bold">TLS 1.3+</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <Button
-                      size="icon"
-                      onClick={() => {
-                        window.dispatchEvent(new CustomEvent('delvare:autofill', {
-                          detail: { message: `I am interested in your ${service.title} service. Please provide more details about the pricing and timeline.` }
-                        }));
-                      }}
-                      className="rounded-full w-12 h-12 bg-foreground/5 dark:bg-white/5 hover:bg-emerald-500 text-foreground dark:text-white dark:hover:text-white hover:text-white border border-foreground/10 dark:border-white/10 transition-all duration-300 group-hover:scale-110"
-                    >
-                      <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                    </Button>
+
+                    <div className="flex items-center gap-3 pt-6">
+                      <Link href={`/specialty/${service.slug}`} className="flex-grow">
+                        <Button
+                          className="w-full h-12 bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-500 rounded-xl font-black uppercase tracking-widest text-[9px]"
+                        >
+                          Enter Protocol <Zap className="ml-2 w-3 h-3 fill-current" />
+                        </Button>
+                      </Link>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => {
+                          window.dispatchEvent(new CustomEvent('delvare:autofill', {
+                            detail: { message: `I am interested in ${service.title}. Requesting technical breakdown.` }
+                          }));
+                        }}
+                        className="w-12 h-12 rounded-xl border-border hover:bg-secondary transition-all"
+                      >
+                        <ArrowRight className="w-4 h-4 -rotate-45" />
+                      </Button>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                </Card>
+              </div>
+            ))
+          ) : (
+            <div className="w-full py-20 text-center">
+              <p className="text-muted-foreground font-bold">No matching protocols found in the active catalog.</p>
             </div>
-          ))}
+          )}
+
+          {/* Final Exploration Card */}
+          <div className="min-w-[320px] snap-start flex items-center justify-center pr-4 text-center">
+            <div className="space-y-6">
+              <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto border-2 border-primary/20 animate-breath">
+                <ArrowRight className="w-8 h-8 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-bold text-xl text-foreground">Full Catalog</h4>
+                <p className="text-sm text-muted-foreground">Detailed Engineering Protocols</p>
+              </div>
+              <Button
+                variant="link"
+                className="text-primary font-black uppercase tracking-widest text-xs"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('delvare:autofill', {
+                    detail: { message: "Requesting comprehensive service ledger." }
+                  }));
+                }}
+              >
+                Request Ledger
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Dynamic Tool Overlay Info */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 border-t border-border/40 animate-fade-in-up [animation-delay:800ms]">
+          <div className="flex items-center gap-6">
+            <div className="flex -space-x-3">
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+                  <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`} alt="User" />
+                </div>
+              ))}
+              <div className="w-10 h-10 rounded-full border-2 border-white bg-primary flex items-center justify-center text-white text-[10px] font-black">+42</div>
+            </div>
+            <p className="text-xs font-bold text-muted-foreground">
+              <span className="text-foreground">Active Deployments</span> in 12+ Cloud Regions
+            </p>
+          </div>
+
+          <div className="flex items-center gap-8">
+            <div className="text-right">
+              <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none">Global Latency</p>
+              <p className="text-xl font-black text-foreground">18ms <span className="text-[10px] align-top text-primary">avg</span></p>
+            </div>
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-white rounded-xl shadow-lg shadow-primary/20 transition-all font-black uppercase tracking-widest text-[9px] px-8"
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('delvare:autofill', {
+                  detail: { message: "Accessing the full-screen detailed service section tool." }
+                }));
+              }}
+            >
+              Open Detailed Explorer <Globe className="ml-2 w-4 h-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>

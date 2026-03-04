@@ -203,8 +203,7 @@ export async function saveContactInfoAction(formData: ContactFormData): Promise<
 
 // Action to get all contacts from Firestore
 export async function getContactsAction(): Promise<{ contacts?: Contact[]; error?: string }> {
-  console.log("getContactsAction started");
-  console.log("Firebase Config Project ID:", app.options.projectId);
+
 
   if (!app.options.projectId) {
     return { error: "Firebase is not configured on the server." };
