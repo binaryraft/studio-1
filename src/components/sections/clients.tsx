@@ -4,11 +4,12 @@ import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Globe } from 'lucide-react';
 
 const clients = [
-  { name: 'Laynered', url: 'https://laynered.com' },
   { name: 'EC Bills', url: 'https://ecbills.in' },
-  { name: 'Alien Hill', url: 'https://alienhill.shop' },
+  { name: 'Laynered', url: 'https://laynered.com' },
   { name: 'Spectra School', url: 'https://spectraschool.in' },
+  { name: 'Delvare', url: 'https://delvare.in' },
   { name: 'Nature of the Divine', url: 'https://natureofthedivine.com' },
+  { name: 'Alien Hills', url: 'https://alienhills.shop' },
 ];
 
 const getFaviconUrl = (domain: string) => {

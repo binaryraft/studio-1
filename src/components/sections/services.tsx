@@ -200,7 +200,7 @@ const ServicesSection = () => {
                 Specs
               </Button>
             </div>
-            <div className="flex gap-2">
+            <div className="hidden lg:flex gap-2">
               <Button size="icon" variant="outline" className="rounded-full border-border hover:bg-secondary transition-all" onClick={() => scroll('left')}>
                 <ArrowRight className="w-5 h-5 rotate-180" />
               </Button>
@@ -214,11 +214,10 @@ const ServicesSection = () => {
         {/* Carousel Container */}
         <div
           id="services-carousel"
-          className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar touch-pan-x overscroll-x-contain"
+          className="flex flex-col lg:flex-row gap-6 lg:overflow-x-auto pb-12 lg:snap-x lg:snap-mandatory hide-scrollbar lg:touch-pan-x lg:overscroll-x-contain"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            scrollSnapType: 'x mandatory',
             WebkitOverflowScrolling: 'touch'
           }}
         >
@@ -226,7 +225,7 @@ const ServicesSection = () => {
             filteredServices.map((service, idx) => (
               <div
                 key={idx}
-                className="min-w-[85vw] md:min-w-[420px] lg:min-w-[480px] snap-center md:snap-start"
+                className="w-full lg:min-w-[480px] lg:snap-start"
               >
                 <Card className="group h-[520px] bg-white border border-border/60 hover:border-primary/30 overflow-hidden relative transition-all duration-500 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] flex flex-col">
                   {/* Visual Header */}
@@ -326,7 +325,7 @@ const ServicesSection = () => {
           )}
 
           {/* Final Exploration Card */}
-          <div className="min-w-[320px] snap-start flex items-center justify-center pr-4 text-center">
+          <div className="w-full lg:min-w-[320px] lg:snap-start flex items-center justify-center p-8 bg-white/50 backdrop-blur-md rounded-2xl border border-border/60 text-center">
             <div className="space-y-6">
               <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto border-2 border-primary/20 animate-breath">
                 <ArrowRight className="w-8 h-8 text-primary" />

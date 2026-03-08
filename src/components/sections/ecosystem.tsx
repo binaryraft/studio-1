@@ -11,9 +11,9 @@ const technologies = [
     { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
     { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
     { name: 'Flutter', icon: 'https://cdn.simpleicons.org/flutter/02569B' },
-    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws/232F3E' },
+    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonwebservices/232F3E' },
     { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB' },
-    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai/412991' },
+    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai/000000' },
 ];
 
 const clients = [

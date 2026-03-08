@@ -73,6 +73,8 @@ export const metadata: Metadata = {
   },
 };
 
+import SmoothScroll from '@/components/smooth-scroll';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,7 +90,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
           <Toaster />
         </ThemeProvider>
       </body>

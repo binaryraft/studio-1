@@ -7,7 +7,7 @@ import KeywordMarquee from '@/components/sections/keywords';
 import ServicesSection from '@/components/sections/services';
 import ProductsSection from '@/components/sections/products';
 import BlogSection from '@/components/sections/blog';
-import ContactSection from '@/components/sections/contact';
+
 import Footer from '@/components/footer';
 import BackgroundDecor from '@/components/background-decor';
 import FloatingActionDock from '@/components/floating-action-dock';
@@ -38,6 +38,16 @@ const EcosystemSection = dynamic(() => import('@/components/sections/ecosystem')
   loading: () => null,
 });
 
+const TechStackSection = dynamic(() => import('@/components/sections/tech-stack'), {
+  ssr: false,
+  loading: () => null,
+});
+
+const ClientsSection = dynamic(() => import('@/components/sections/clients'), {
+  ssr: false,
+  loading: () => null,
+});
+
 import { useState } from 'react';
 import { QuotationPDFTemplate, CatalogPDFTemplate } from '@/components/printable-assets';
 
@@ -54,11 +64,13 @@ export default function HomeClient() {
         <ServicesSection />
         <ProductsSection />
         <EcosystemSection />
+        <ClientsSection />
+        <TechStackSection />
         <CareerSection />
         <TechFeaturesSection />
         <CatalogSection />
         <BlogSection />
-        <ContactSection />
+
         <CostEstimatorSection />
         <CodingLearningHub />
         <FloatingActionDock />

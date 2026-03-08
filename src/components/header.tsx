@@ -55,6 +55,22 @@ const Header = () => {
     return () => window.removeEventListener('open-contact-form', handleOpenForm);
   }, []);
 
+  useEffect(() => {
+    const handleAutofill = (e: Event) => {
+      const message = (e as CustomEvent<{ message?: string }>).detail?.message;
+      if (message) {
+        setFormType('contact');
+        setFormOpen(true);
+        setMenuOpen(false);
+        setIsSubmitted(false);
+        setFormData(prev => ({ ...prev, message }));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    window.addEventListener('delvare:autofill', handleAutofill);
+    return () => window.removeEventListener('delvare:autofill', handleAutofill);
+  }, []);
+
   const toggleForm = (type: 'contact' | 'career') => {
     if (formOpen && formType === type) {
       setFormOpen(false);
@@ -108,7 +124,7 @@ const Header = () => {
       <header className={cn(
         "fixed z-[60] transition-all duration-700 border-b-2 border-white/10",
         formOpen
-          ? "top-0 left-0 w-full rounded-none bg-white border-none py-6 h-screen overflow-y-auto"
+          ? "top-0 left-1/2 -translate-x-1/2 w-full max-w-none rounded-none bg-white border-none py-6 h-screen overflow-y-auto"
           : cn(
             "top-4 left-1/2 -translate-x-1/2 w-[95%] lg:max-w-7xl rounded-2xl border border-white/20 shadow-2xl",
             scrolled

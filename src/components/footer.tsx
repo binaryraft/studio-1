@@ -41,11 +41,11 @@ const Footer = () => {
           <div className="space-y-8">
             <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Ecosystem</h3>
             <ul className="space-y-5 text-muted-foreground font-bold text-sm">
-              <li><a href="#services" className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Services</a></li>
-              <li><a href="#products" className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Our Work</a></li>
-              <li><a href="#clients" className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Clients</a></li>
-              <li><a href="#blog" className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Speciality</a></li>
-              <li><a href="#careers" className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Careers</a></li>
+              <li><a href="#services" onClick={(e) => { e.preventDefault(); document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Services</a></li>
+              <li><a href="#products" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Our Work</a></li>
+              <li><a href="#clients" onClick={(e) => { e.preventDefault(); document.getElementById('clients')?.scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Clients</a></li>
+              <li><a href="#blog" onClick={(e) => { e.preventDefault(); document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Speciality</a></li>
+              <li><a href="#careers" onClick={(e) => { e.preventDefault(); document.getElementById('careers')?.scrollIntoView({ behavior: 'smooth' }); }} className="hover:text-primary transition-all flex items-center gap-2 group"><div className="w-1 h-1 bg-border group-hover:bg-primary rounded-full transition-all" />Careers</a></li>
             </ul>
           </div>
 
@@ -94,6 +94,7 @@ const Footer = () => {
                 <div className="flex flex-col gap-1">
                   <span className="text-[10px] uppercase tracking-widest text-muted-foreground/60">Direct Support</span>
                   <a href={siteConfig.contact.phoneHref} className="hover:text-primary transition-colors text-foreground">{siteConfig.contact.phone}</a>
+                  <a href="tel:+918606281125" className="hover:text-primary transition-colors text-foreground">+91 8606281125</a>
                 </div>
               </li>
             </ul>

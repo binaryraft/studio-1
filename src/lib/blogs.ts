@@ -31,7 +31,7 @@ export const blogs: BlogPost[] = [
     `,
         date: 'March 4, 2026',
         author: 'Delvare Team',
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop',
+        image: '/assets/blog_ai_business_1772616812117.png',
         tags: ['AI', 'Growth', 'Business']
     },
     {
@@ -55,7 +55,7 @@ export const blogs: BlogPost[] = [
     `,
         date: 'March 1, 2026',
         author: 'Tech Lead',
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+        image: '/assets/nanotech_curved_2_1772615432367.png',
         tags: ['Cloud', 'Performance', 'Tech']
     }
 ];

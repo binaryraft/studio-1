@@ -108,7 +108,7 @@ const HeroSection = () => {
               <Button
                 size="xl"
                 className="h-16 px-10 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-                onClick={() => document.getElementById('estimator')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.dispatchEvent(new CustomEvent('open-estimator'))}
               >
                 AI Estimator
                 <Sparkles className="ml-2 w-5 h-5 group-hover:rotate-12 transition-transform" />
@@ -147,12 +147,12 @@ const HeroSection = () => {
               <div
                 ref={arrowRef}
                 className="absolute z-20 w-64 h-64 bg-card/80 backdrop-blur-3xl border-4 border-primary/20 rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(16,185,129,0.2)] flex flex-col items-center justify-center transition-transform duration-200 ease-out animate-fade-in"
-                style={{ transform: `rotate(${arrowRotation}deg)` }}
               >
                 <img
                   src="/assets/arrow.png"
                   alt="Speciality Focus"
-                  className="w-32 h-32 object-contain"
+                  className="w-32 h-32 object-contain transition-transform duration-200 ease-out"
+                  style={{ transform: `rotate(${arrowRotation}deg)` }}
                 />
               </div>
 

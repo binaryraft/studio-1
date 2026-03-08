@@ -31,14 +31,14 @@ const FloatingActionDock = () => {
             id: 'whatsapp',
             icon: <MessageCircle className="w-6 h-6" />,
             label: 'Executive Support',
-            color: 'bg-[#25D366]',
+            color: 'bg-primary',
             onClick: () => window.open(siteConfig.contact.whatsapp, '_blank')
         },
         {
             id: 'learning',
             icon: <Zap className="w-6 h-6" />,
             label: 'Training Hub',
-            color: 'bg-amber-500',
+            color: 'bg-primary',
             onClick: () => window.dispatchEvent(new CustomEvent('open-learning-hub'))
         },
         {
@@ -52,7 +52,7 @@ const FloatingActionDock = () => {
             id: 'catalog',
             icon: <FileText className="w-6 h-6" />,
             label: 'Full Catalog',
-            color: 'bg-indigo-500',
+            color: 'bg-primary',
             onClick: () => generatePDF('catalog-pdf-template', 'Delvare_Executive_Catalog')
         }
     ];
@@ -82,12 +82,12 @@ const FloatingActionDock = () => {
                     >
                         {/* Chat Bubble Description */}
                         <div className={cn(
-                            "bg-brand-dark text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-2xl border border-white/10 shadow-2xl transition-all duration-300 transform origin-right group-hover:scale-105 group-hover:bg-primary group-hover:border-primary/20 relative",
+                            "bg-primary text-white text-[10px] font-black uppercase tracking-widest px-6 py-3 rounded-2xl border border-white/10 shadow-2xl transition-all duration-300 transform origin-right group-hover:scale-105 group-hover:bg-primary group-hover:border-primary/20 relative",
                             isOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
                         )}>
                             {action.label}
                             {/* Small Arrow Pointer */}
-                            <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-brand-dark rotate-45 border-r border-t border-white/10 group-hover:bg-primary group-hover:border-primary/20 transition-colors" />
+                            <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 bg-primary rotate-45 border-r border-t border-white/10 transition-colors" />
                         </div>
                         <div className={cn(
                             "w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-2xl transition-all duration-500 hover:scale-110 active:scale-95 relative",
