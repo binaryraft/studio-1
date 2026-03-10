@@ -1,170 +1,170 @@
 export const specialties = [
     {
         slug: "cloud-hosting",
-        title: "Cloud Infrastructure",
-        description: "High-tier server clusters with 99.99% uptime and global CDN distribution.",
-        detailedDescription: "Our cloud solutions are designed for mission-critical applications. We utilize advanced clustering and load-balancing techniques to ensure your services remain online even during massive surges. With edge computing and global content delivery, we guarantee low-latency access for your users worldwide.",
+        title: "Cloud Servers",
+        description: "Reliable servers that stay online 24/7 and load your site fast across the globe.",
+        detailedDescription: "Our cloud servers are built for businesses that need to be online all the time. We use smart systems to make sure your website never goes down, even if many people visit at once. With fast loading everywhere, your customers will always have a great experience.",
         features: [
-            "99.99% Guaranteed Uptime",
-            "Global Edge CDN Integration",
-            "Auto-Scaling Compute Nodes",
-            "Military-Grade DDoS Protection",
-            "Managed Kubernetes Clusters",
-            "Daily Encrypted Snapshots"
+            "99.99% Online Guarantee",
+            "Fast Global Loading",
+            "Automatic Scaling",
+            "Strong Hacker Protection",
+            "Managed Systems",
+            "Daily Secure Backups"
         ],
         icon: "Cloud",
         accent: "bg-blue-500",
         stats: [
             { label: "Uptime", value: "99.99%" },
-            { label: "Latency", value: "<50ms" },
-            { label: "Security", value: "Level 4" }
+            { label: "Speed", value: "Very Fast" },
+            { label: "Security", value: "High Tier" }
         ]
     },
     {
         slug: "ai-ecosystems",
-        title: "AI Ecosystems",
-        description: "Proprietary model training and neural network automation for enterprise.",
-        detailedDescription: "We don't just use AI; we build it. Our engineers deploy custom LLMs and neural networks specifically tuned for your organizational data. From automated customer support layers to predictive analytics in supply chain management, our AI ecosystems turn data into actionable intelligence.",
+        title: "AI Solutions",
+        description: "Custom AI tools and smart automation to help your business grow faster.",
+        detailedDescription: "We build AI that actually works for your business. From smart chat bots that talk to your customers to systems that predict your next big sale, we help you use data to make more money and save time. We don't just use AI; we build it specifically for what you need.",
         features: [
-            "Custom LLM Fine-Tuning",
-            "Neural Network R&D",
-            "Predictive Data Modeling",
-            "Computer Vision Systems",
-            "Natural Language Processing",
-            "GPU-Accelerated Inference"
+            "Custom AI Chat Bots",
+            "Smart Data Analysis",
+            "Automatic Tasking",
+            "Image Recognition",
+            "Language Translation",
+            "Fast AI Processing"
         ],
         icon: "Brain",
         accent: "bg-purple-500",
         stats: [
-            { label: "Models", value: "Proprietary" },
-            { label: "Accuracy", value: "98.5%" },
-            { label: "Real-time", value: "Yes" }
+            { label: "Models", value: "Custom" },
+            { label: "Accuracy", value: "High" },
+            { label: "Insights", value: "Real-time" }
         ]
     },
     {
         slug: "software-design",
-        title: "Software Frameworks",
-        description: "Next-generation software architecture built with high-performance frameworks.",
-        detailedDescription: "Elite software requires elite foundations. We build using modern stacks like Next.js, Flutter, and Go to deliver platforms that are not only visually stunning but technically superior. Our code is modular, documented, and built with a 'scale-first' mentality.",
+        title: "Web & App Design",
+        description: "Beautiful, fast websites and mobile apps built with modern technology.",
+        detailedDescription: "We build websites and apps that not only look amazing but work perfectly. Using the latest tools, we create platforms that are easy to use and can grow as your business grows. Your code will be clean, fast, and ready for anything.",
         features: [
-            "Microservices Architecture",
-            "Cross-Platform Flutter Apps",
-            "Next.js High-SEO Web Apps",
-            "Robust Go/Rust API Backends",
-            "Real-time WebSocket Sync",
-            "Clean Code Compliance"
+            "Modern Web Apps",
+            "Mobile Apps for All",
+            "Search Engine Ready",
+            "Fast API Connections",
+            "Real-time Updates",
+            "Clean & Safe Code"
         ],
-        icon: "Code2",
+        icon: "Layout",
         accent: "bg-emerald-500",
         stats: [
-            { label: "Scalability", value: "Infinite" },
-            { label: "Stack", value: "Elite Tier" },
+            { label: "Growth", value: "Easy" },
+            { label: "Tech", value: "Modern" },
             { label: "Speed", value: "Maximized" }
         ]
     },
     {
         slug: "cyber-security",
-        title: "Cyber Security",
-        description: "Military-grade encryption and perpetual perimeter defense systems.",
-        detailedDescription: "In an era of digital volatility, your perimeter is your business. We implement zero-trust architectures and perpetual scanning to identify vulnerabilities before they are exploited. From pen-testing to deep encryption, we ensure your client data is locked down.",
+        title: "Business Security",
+        description: "Total protection for your data and customers with advanced security tools.",
+        detailedDescription: "Keeping your digital business safe is our top priority. We set up strong walls around your data so hackers can't get in. From testing your site for weak spots to locking down every piece of info, we make sure your business is safe from every angle.",
         features: [
-            "Zero-Trust Architecture",
-            "End-to-End AES-256 Encryption",
-            "Penetration Testing Protocols",
-            "Incident Response Planning",
-            "IAM Strategy & Execution",
-            "Perpetual Perimeter Scans"
+            "Secure Access Control",
+            "End-to-End Encryption",
+            "Safe Testing Protocols",
+            "Emergency Planning",
+            "Identity Protection",
+            "24/7 Security Scans"
         ],
         icon: "ShieldCheck",
         accent: "bg-red-500",
         stats: [
-            { label: "Defense", value: "Grade A" },
-            { label: "Protocols", value: "Secure" },
-            { label: "Threats", value: "Monitored" }
+            { label: "Defense", value: "Strong" },
+            { label: "Safety", value: "Verified" },
+            { label: "Monitoring", value: "Global" }
         ]
     },
     {
         slug: "technical-sla",
-        title: "Technical SLA",
-        description: "Full-lifecycle maintenance and 24/7 technical oversight for platforms.",
-        detailedDescription: "Elite systems require constant vigilance. Our Technical SLA (Service Level Agreement) is more than just support; it's active management. We monitor every node, every database transaction, and every API call to ensure your business never misses a beat.",
+        title: "Always-On Support",
+        description: "Full maintenance and 24/7 support so you never have to worry about tech.",
+        detailedDescription: "We take care of the tech so you don't have to. Our support team watches your systems all day and all night. If something goes wrong, we fix it before you even notice. We keep everything updated and running at top speed.",
         features: [
-            "24/7 Monitoring Center",
-            "Proactive Patching Cycles",
-            "Immediate Response Decent",
-            "Performance Optimization",
-            "Compliance Auditing",
-            "Stakeholder Tech Reports"
+            "24/7 Support Center",
+            "Proactive Updates",
+            "15-Minute Response",
+            "Speed Optimization",
+            "Monthly Reports",
+            "Dedicated Tech Team"
         ],
         icon: "LifeBuoy",
         accent: "bg-amber-500",
         stats: [
             { label: "Response", value: "<15min" },
-            { label: "Availability", value: "24/7" },
-            { label: "SLA", value: "Elite" }
+            { label: "Support", value: "24/7" },
+            { label: "Care", value: "Elite" }
         ]
     },
     {
         slug: "legacy-migration",
-        title: "Legacy Migration",
-        description: "Seamless architectural transformation of mature software assets.",
-        detailedDescription: "Don't let yesterday's code hold back tomorrow's growth. We specialize in the surgical extraction of legacy systems into modern cloud-native architectures. We preserve your vital data while upgrading your performance, security, and scalability.",
+        title: "Old System Updates",
+        description: "Moving your old software to the modern cloud without losing any data.",
+        detailedDescription: "Don't let old programs slow you down. We help you move your old software to the modern cloud. We keep all your important data safe while making your systems faster, safer, and easier to use on phones and computers.",
         features: [
-            "Database Modernization",
-            "Cloud Refactoring (AWS/GCP)",
-            "Zero-Downtime Migration",
-            "API Wrapping for Legacy",
-            "State preservation",
-            "Cost Optimization Analytics"
+            "Database Cleanup",
+            "Move to Cloud",
+            "No Downtime",
+            "New API Connections",
+            "Safe Data Transfer",
+            "Lower Tech Costs"
         ],
         icon: "GitBranch",
         accent: "bg-indigo-500",
         stats: [
             { label: "Downtime", value: "Zero" },
-            { label: "Integrity", value: "100%" },
-            { label: "Speed", value: "Enhanced" }
+            { label: "Safety", value: "100%" },
+            { label: "Speed", value: "Faster" }
         ]
     },
     {
         slug: "system-update",
-        title: "System Update",
-        description: "Continuous delivery of performance patches and feature expansion units.",
-        detailedDescription: "The digital landscape evolves daily; so should your platform. We provide continuous update cycles that introduce new competitive features and security enhancements without disrupting your operations. Stay ahead with Delvare Upkeep.",
+        title: "Ongoing Updates",
+        description: "Regular updates to keep your site fast, safe, and full of new features.",
+        detailedDescription: "Technology changes fast, and we make sure your business stays ahead. We send out regular updates that group together new features and security fixes. Your site stays modern and fast without any effort from you.",
         features: [
-            "Continuous CI/CD Cycles",
-            "Modular Feature Expansion",
-            "Hot-Fix Hotloading",
-            "Compliance Ready Upgrades",
-            "Adaptive Scaling Logic",
-            "UX/UI Modernization"
+            "Automatic Updates",
+            "New Feature Add-ons",
+            "Security Patches",
+            "Better Performance",
+            "Mobile Ready Upgrades",
+            "Modern Look Refreshes"
         ],
         icon: "Zap",
         accent: "bg-yellow-500",
         stats: [
-            { label: "Cycle", value: "Iterative" },
-            { label: "Stability", value: "High" },
+            { label: "Growth", value: "Regular" },
+            { label: "Stability", value: "Static" },
             { label: "Updates", value: "Weekly" }
         ]
     },
     {
         slug: "technical-consulting",
-        title: "Executive Consulting",
-        description: "Executive technical strategy and architectural roadmap planning.",
-        detailedDescription: "Strategy precedes success. We work with leadership teams to define technical roadmaps that align with business objectives. From M&A technical due diligence to digital transformation strategy, we provide the clarity needed for complex decisions.",
+        title: "Business Consulting",
+        description: "Expert talk to help you plan your business growth with technology.",
+        detailedDescription: "Good planning leads to great success. We work with you to understand your goals and find the best technology to reach them. From saving money on tech to building a plan for the next five years, we give you clear advice.",
         features: [
-            "Architectural Auditing",
-            "Digital Roadmap Planning",
-            "Stack Rationalization",
-            "Tech Due Diligence",
-            "Governance & Compliance",
-            "Scalability Consulting"
+            "System Audits",
+            "Tech Planning",
+            "Cost Saving Advice",
+            "Growth Strategy",
+            "Clear Reporting",
+            "Expert Guidance"
         ],
         icon: "MessageSquare",
         accent: "bg-cyan-500",
         stats: [
-            { label: "Insight", value: "Expert" },
-            { label: "Strategy", value: "Aligned" },
-            { label: "Growth", value: "Driven" }
+            { label: "Advice", value: "Expert" },
+            { label: "Strategy", value: "Clear" },
+            { label: "Results", value: "Driven" }
         ]
     }
 ];

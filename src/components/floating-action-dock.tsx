@@ -105,7 +105,7 @@ const FloatingActionDock = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
                     "w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-2xl border border-white/10 group overflow-hidden",
-                    isOpen ? "bg-white text-brand-dark rotate-180" : "bg-brand-dark text-white"
+                    isOpen ? "bg-white text-brand-dark rotate-180" : "bg-primary text-white"
                 )}
             >
                 {isOpen ? (

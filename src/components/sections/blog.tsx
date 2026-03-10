@@ -26,7 +26,8 @@ const BlogSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                     {blogs.map((post, idx) => (
                         <Link href={`/blog/${post.slug}`} key={post.slug}>
-                            <Card className="group border border-border/50 hover:border-primary/20 transition-all duration-500 overflow-hidden bg-[#fdfdfd] rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
+                            {/* Desktop Card */}
+                            <Card className="hidden md:flex flex-col group border border-border/50 hover:border-primary/20 transition-all duration-500 overflow-hidden bg-[#fdfdfd] rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 animate-fade-in-up h-full" style={{ animationDelay: `${idx * 150}ms` }}>
                                 <div className="relative h-64 overflow-hidden">
                                     <img
                                         src={post.image}
@@ -56,6 +57,31 @@ const BlogSection = () => {
                                         Read More <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                                     </div>
                                 </CardContent>
+                            </Card>
+
+                            {/* Mobile Card - rectangular */}
+                            <Card className="flex md:hidden group border border-border/50 p-4 gap-4 items-center bg-[#fdfdfd] rounded-2xl shadow-sm mb-4">
+                                <div className="flex-grow space-y-2">
+                                    <div className="flex items-center gap-2">
+                                        {post.tags.slice(0, 1).map(tag => (
+                                            <Badge key={tag} className="bg-primary/10 text-primary border-none text-[8px] font-black uppercase tracking-widest px-2 py-0.5">
+                                                {tag}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                    <h3 className="text-lg font-black tracking-tight text-foreground leading-tight">
+                                        {post.title}
+                                    </h3>
+                                    <div className="flex items-center gap-3 text-[8px] font-black uppercase tracking-widest text-muted-foreground/60">
+                                        <span>{post.date}</span>
+                                    </div>
+                                    <div className="pt-1 flex items-center text-primary font-black text-[9px] uppercase tracking-widest gap-1">
+                                        Read <ArrowRight className="w-3 h-3" />
+                                    </div>
+                                </div>
+                                <div className="w-24 h-24 shrink-0 overflow-hidden rounded-xl">
+                                    <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                                </div>
                             </Card>
                         </Link>
                     ))}

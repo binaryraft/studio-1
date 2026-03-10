@@ -5,12 +5,12 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, ArrowLeft, CheckCircle2, Zap, Cloud, Code2, ShieldCheck, LifeBuoy, GitBranch, Cpu, Brain, MessageSquare } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle2, Zap, Cloud, Code2, ShieldCheck, LifeBuoy, GitBranch, Cpu, Brain, MessageSquare, Layout, Database } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useEffect } from 'react';
 
 const iconMap: Record<string, any> = {
-    Cloud, Brain, Code2, ShieldCheck, LifeBuoy, GitBranch, Zap, MessageSquare, Cpu
+    Cloud, Brain, Code2, ShieldCheck, LifeBuoy, GitBranch, Zap, MessageSquare, Cpu, Layout, Database
 };
 
 interface SpecialtyDetailContentProps {
@@ -59,23 +59,23 @@ export default function SpecialtyDetailContent({ data }: SpecialtyDetailContentP
                                     <div className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:border-primary group-hover:bg-primary group-hover:text-white transition-all">
                                         <ArrowLeft className="w-4 h-4" />
                                     </div>
-                                    Return to Control
+                                    Go Back
                                 </button>
 
                                 <Badge variant="outline" className="border-primary/20 text-primary px-5 py-2 text-[10px] font-black tracking-[0.3em] uppercase bg-primary/5">
-                                    Protocol_v4.2.0_{data.slug.toUpperCase()}
+                                    Service Details
                                 </Badge>
                             </div>
 
-                            <div className="grid lg:grid-cols-12 gap-20 items-center">
+                            <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
                                 {/* Left Content */}
-                                <div className="lg:col-span-7 space-y-10">
+                                <div className="lg:col-span-12 xl:col-span-7 space-y-10">
                                     <div className="space-y-6">
-                                        <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] text-foreground animate-fade-in-up">
+                                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter leading-[0.85] text-foreground animate-fade-in-up">
                                             {data.title.split(' ')[0]} <br />
                                             <span className="text-primary italic font-light tracking-tight">{data.title.split(' ').slice(1).join(' ')}</span>
                                         </h1>
-                                        <p className="text-2xl md:text-3xl text-muted-foreground font-medium leading-tight max-w-2xl italic tracking-tight animate-fade-in-up [animation-delay:100ms]">
+                                        <p className="text-xl md:text-3xl text-muted-foreground font-medium leading-tight max-w-2xl italic tracking-tight animate-fade-in-up [animation-delay:100ms]">
                                             "{data.description}"
                                         </p>
                                     </div>
@@ -88,7 +88,7 @@ export default function SpecialtyDetailContent({ data }: SpecialtyDetailContentP
                                                 </div>
                                                 <div className="space-y-1">
                                                     <p className="font-black text-[11px] uppercase tracking-widest text-foreground">{feat}</p>
-                                                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest opacity-40">Deployment Ready</p>
+                                                    <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest opacity-40">Ready to Use</p>
                                                 </div>
                                             </div>
                                         ))}
@@ -98,9 +98,9 @@ export default function SpecialtyDetailContent({ data }: SpecialtyDetailContentP
                                         <Button
                                             size="xl"
                                             className="h-18 px-12 bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-2xl hover:-translate-y-1 transition-all font-black uppercase tracking-[0.2em] text-[11px]"
-                                            onClick={() => window.open(`https://wa.me/918606821125?text=Inquiry for ${data.title}`)}
+                                            onClick={() => window.open(`https://wa.me/918606821125?text=I am interested in ${data.title}`)}
                                         >
-                                            Initiate Stack <Zap className="ml-3 w-5 h-5 fill-current" />
+                                            Get Started <Zap className="ml-3 w-5 h-5 fill-current" />
                                         </Button>
                                         <Button
                                             variant="outline"
@@ -108,13 +108,13 @@ export default function SpecialtyDetailContent({ data }: SpecialtyDetailContentP
                                             className="h-18 px-10 border-border border-2 hover:bg-secondary rounded-2xl transition-all font-black uppercase tracking-[0.2em] text-[11px]"
                                             onClick={() => router.push('/#services')}
                                         >
-                                            Explore Complete Services <ArrowRight className="ml-3 w-5 h-5" />
+                                            See All Services <ArrowRight className="ml-3 w-5 h-5" />
                                         </Button>
                                     </div>
                                 </div>
 
                                 {/* Right Visualization */}
-                                <div className="lg:col-span-5 relative animate-fade-in-up [animation-delay:400ms]">
+                                <div className="lg:col-span-12 xl:col-span-5 relative animate-fade-in-up [animation-delay:400ms]">
                                     <div className="relative z-10 bg-white p-4 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border border-border overflow-hidden">
                                         <div className={cn("w-full aspect-square rounded-[3.5rem] flex flex-col items-center justify-center text-white relative overflow-hidden", data.accent)}>
                                             <Icon className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl z-10" />
@@ -171,8 +171,8 @@ export default function SpecialtyDetailContent({ data }: SpecialtyDetailContentP
                                     D
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Built by Delvare Core</p>
-                                    <p className="text-sm font-medium text-muted-foreground italic">"Architecture that transcends standard boundaries."</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.4em] text-foreground">Made by Delvare</p>
+                                    <p className="text-sm font-medium text-muted-foreground italic">"Simple tech for better business."</p>
                                 </div>
                             </div>
 

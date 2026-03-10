@@ -25,27 +25,26 @@ const CatalogSection = () => {
                             Resources
                         </Badge>
                         <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter leading-none text-white">
-                            Digital <br />
-                            <span className="text-white/40 font-light italic tracking-tight">Systematic.</span>
+                            Our <br />
+                            <span className="text-white/40 font-light italic tracking-tight">Work.</span>
                         </h2>
                         <p className="text-xl text-white/60 max-w-xl leading-relaxed font-medium">
-                            "Access the complete Delvare manifesto. A comprehensive digital exposition of our services, architectural methodology, and proprietary technology nodes."
+                            "Get our complete business guide. A clear look at what we do and how we can help you grow."
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-5 pt-4">
                             <Button
                                 size="xl"
                                 className="h-16 px-10 text-[10px] uppercase tracking-[0.2em] font-black bg-white text-primary shadow-2xl hover:shadow-white/20 hover:-translate-y-1 transition-all group rounded-xl"
-                                onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Manifesto_2026')}
+                                onClick={() => window.open('/manifesto.pdf', '_blank')}
                             >
                                 <Download className="mr-3 w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                                Download Manifesto
+                                Download Guide
                             </Button>
                             <Button
                                 size="xl"
-                                variant="outline"
-                                className="h-16 px-10 text-[10px] uppercase tracking-[0.2em] font-black border-white/20 text-white hover:bg-white hover:text-primary rounded-xl transition-all"
-                                onClick={() => generatePDF('catalog-pdf-template', 'Delvare_Portfolio')}
+                                className="h-16 px-10 text-[10px] uppercase tracking-[0.2em] font-black bg-white text-primary shadow-2xl hover:shadow-white/20 hover:-translate-y-1 transition-all group rounded-xl"
+                                onClick={() => window.open('/portfolio.pdf', '_blank')}
                             >
                                 <FileText className="mr-3 w-5 h-5" />
                                 View Portfolio
@@ -58,12 +57,12 @@ const CatalogSection = () => {
                             <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 group-hover:bg-white group-hover:text-primary transition-all duration-500">
                                 <BookOpen className="w-8 h-8" />
                             </div>
-                            <h3 className="text-2xl font-black tracking-tight mb-4 text-white">Service Index</h3>
+                            <h3 className="text-2xl font-black tracking-tight mb-4 text-white">Our Services</h3>
                             <p className="text-white/60 mb-8 font-medium italic">
-                                "A granular decomposition of our deployment capabilities across AI and Cloud."
+                                "A simple list of what we can build for you, from AI to Cloud."
                             </p>
                             <Button variant="link" className="p-0 h-auto font-black text-[10px] uppercase tracking-widest text-white group-hover:translate-x-2 transition-transform">
-                                READ ABSTRACT <ArrowRight className="ml-2 w-4 h-4" />
+                                VIEW LIST <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                         </Card>
 
@@ -71,21 +70,21 @@ const CatalogSection = () => {
                             <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 group-hover:bg-white group-hover:text-primary transition-all duration-500">
                                 <Layers className="w-8 h-8" />
                             </div>
-                            <h3 className="text-2xl font-black tracking-tight mb-4 text-white">Tech Topology</h3>
+                            <h3 className="text-2xl font-black tracking-tight mb-4 text-white">Our Tech</h3>
                             <p className="text-white/60 mb-8 font-medium italic">
-                                "Exploration of the frameworks and languages utilized in our primary development cycle."
+                                "The tools and languages we use to build fast, modern software."
                             </p>
                             <Button variant="link" className="p-0 h-auto font-black text-[10px] uppercase tracking-widest text-white group-hover:translate-x-2 transition-transform">
-                                READ ABSTRACT <ArrowRight className="ml-2 w-4 h-4" />
+                                VIEW TECH <ArrowRight className="ml-2 w-4 h-4" />
                             </Button>
                         </Card>
 
                         <Card className="md:col-span-2 p-12 group hover:-translate-y-2 transition-all duration-700 border-white/10 bg-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] relative overflow-hidden rounded-[3rem]">
                             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
                                 <div className="space-y-4">
-                                    <h3 className="text-3xl font-black tracking-tight text-brand-dark">Custom Projections?</h3>
+                                    <h3 className="text-3xl font-black tracking-tight text-brand-dark">Need a Price?</h3>
                                     <p className="text-muted-foreground max-w-md font-medium">
-                                        Our algorithmic estimator can provide a high-fidelity quotation based on your unique deployment requirements.
+                                        Use our easy calculator to get a price for your project in seconds.
                                     </p>
                                 </div>
                                 <Button
