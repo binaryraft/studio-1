@@ -5,137 +5,139 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Cloud, BarChart, ShieldCheck, ArrowRight, Zap, Check, Globe, Layout, LifeBuoy, Database, Brain, GitBranch } from 'lucide-react';
+import { Cloud, BarChart3, ShieldCheck, ArrowRight, Zap, Check, Globe, Layout, LifeBuoy, Database, Brain, TrendingUp, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLocation } from '@/hooks/use-location';
+import { useRouter } from 'next/navigation';
 
 const services = [
   {
-    title: "Software for Business",
-    slug: "software-design",
-    description: "We build strong, safe software that grows with your business and works everywhere.",
-    price: 9999,
-    icon: <Database className="w-8 h-8" />,
-    features: ["Custom Software", "Easy to Scale", "Works Together"],
-    accent: "bg-primary shadow-primary/20",
+    title: "Marketing & SEO Agency",
+    slug: "seo-optimization",
+    description: "We introduce tools to automate digital marketing, SEO, and outreach.",
+    price: 4000,
+    icon: <TrendingUp className="w-8 h-8" />,
+    features: ["Automated Tools", "AI Systems", "Market Dominance"],
+    accent: "bg-orange-500 shadow-orange-500/20",
+    image: "/assets/services/seo.png"
   },
   {
-    title: "Websites & Apps",
+    title: "Business Analyst",
+    slug: "business-analyst",
+    description: "Analyzing financial and economic factors to ideate further.",
+    price: 12000,
+    icon: <BarChart3 className="w-8 h-8" />,
+    features: ["Financial Analysis", "Growth Modeling", "Risk Assessment"],
+    accent: "bg-yellow-500 shadow-yellow-500/20",
+    image: "/assets/services/support.png"
+  },
+  {
+    title: "Software Engineering",
+    slug: "software-engineering",
+    description: "Your idea, our engineering, together we share flight.",
+    price: 20000,
+    icon: <Database className="w-8 h-8" />,
+    features: ["Emerging Frameworks", "PaaS Architecture", "High-Availability"],
+    accent: "bg-blue-600 shadow-blue-600/20",
+    image: "/assets/services/software.png"
+  },
+  {
+    title: "AI Integrated Dashboards",
+    slug: "ai-dashboard",
+    description: "We interconnect your systems and let AI handle simple tasks.",
+    price: 15000,
+    icon: <Globe className="w-8 h-8" />,
+    features: ["System Interconnection", "Automated Tasks", "Enterprise Oversight"],
+    accent: "bg-indigo-600 shadow-indigo-600/20",
+    image: "/assets/projects/p2.png"
+  },
+  {
+    title: "AI & Automation",
+    slug: "ai-ecosystems",
+    description: "Focuses on training, tuning and automating functions.",
+    price: 10000,
+    icon: <Brain className="w-8 h-8" />,
+    features: ["LLM Fine-Tuning", "RAG Implementation", "Neural Networks"],
+    accent: "bg-purple-600 shadow-purple-600/20",
+    image: "/assets/services/ai.png"
+  },
+  {
+    title: "UI/UX Design",
     slug: "software-design",
-    description: "Fast, beautiful websites that help you find more customers and look great on phones.",
+    description: "Share your brand's value with Delvare UI/UX psychology.",
     price: 4999,
     icon: <Layout className="w-8 h-8" />,
-    features: ["Super Fast", "Modern Look", "Easy to Manage"],
-    accent: "bg-brand-dark shadow-black/20",
+    features: ["UI/UX Psychology", "Cognitive Load", "Micro-Interactions"],
+    accent: "bg-emerald-500 shadow-emerald-500/20",
+    image: "/assets/services/design.png"
   },
   {
-    title: "Cloud Hosting",
+    title: "Cloud Solutions",
     slug: "cloud-hosting",
-    description: "Simple, fast cloud setups that keep your site online 24/7 without costing a fortune.",
+    description: "Manage, migrate, and start cloud systems for business efficiency.",
     price: 2999,
     icon: <Cloud className="w-8 h-8" />,
-    features: ["Fast Loading", "Safe Backups", "Low Cost"],
-    accent: "bg-primary/80 shadow-primary/10",
+    features: ["Cloud Migration", "System Management", "Architecture Setup"],
+    accent: "bg-cyan-500 shadow-cyan-500/20",
+    image: "/assets/services/cloud.png"
   },
   {
-    title: "Expert Maintenance",
-    slug: "technical-sla",
-    description: "We watch over your site 24/7 so you never have to worry about tech problems again.",
-    price: 499,
-    icon: <LifeBuoy className="w-8 h-8" />,
-    features: ["24/7 Support", "Updates Included", "Safety First"],
-    accent: "bg-brand-dark shadow-black/20",
-  },
-  {
-    title: "Business Advice",
-    slug: "technical-consulting",
-    description: "We help you understand your data and find the best ways to grow your company.",
-    price: 1499,
-    icon: <BarChart className="w-8 h-8" />,
-    features: ["Search Growth", "Save Money", "New Customers"],
-    accent: "bg-primary/60 shadow-primary/5",
-  },
-  {
-    title: "Safety & Protection",
+    title: "Cyber Security",
     slug: "cyber-security",
-    description: "We protect your data and your customers from hackers with the best security tools.",
+    description: "Analyse testing, training and tuning AI models securely.",
     price: 3499,
     icon: <ShieldCheck className="w-8 h-8" />,
-    features: ["Hacker Proof", "Data Privacy", "Safe Shopping"],
-    accent: "bg-black shadow-black/20",
+    features: ["AI Model Security", "Vulnerability Scans", "Zero-Trust Auth"],
+    accent: "bg-red-600 shadow-red-600/20",
+    image: "/assets/services/security.png"
   },
   {
-    title: "AI Solutions",
-    slug: "ai-ecosystems",
-    description: "We build custom AI tools that help your business automate tasks and make better decisions.",
-    price: 7999,
-    icon: <Brain className="w-8 h-8" />,
-    features: ["Custom AI Bots", "Smart Automation", "Data Insights"],
-    accent: "bg-purple-600 shadow-purple-600/20",
-  },
-  {
-    title: "Old System Updates",
-    slug: "legacy-migration",
-    description: "We move your old software to the cloud safely so it works faster and better.",
-    price: 5999,
-    icon: <GitBranch className="w-8 h-8" />,
-    features: ["No Data Loss", "Modern Cloud", "Fast Speed"],
-    accent: "bg-indigo-600 shadow-indigo-600/20",
+    title: "Managed Support",
+    slug: "technical-sla",
+    description: "Handle, business consultancy, analysis and our stake.",
+    price: 499,
+    icon: <LifeBuoy className="w-8 h-8" />,
+    features: ["Business Consultancy", "Technical Handling", "Mutual Growth Stake"],
+    accent: "bg-amber-500 shadow-amber-500/20",
+    image: "/assets/services/support.png"
   },
 ];
 
 const pricingData: Record<string, { currency: string, symbol: string, rate: number, name: string }> = {
   'US': { currency: 'USD', symbol: '$', rate: 1, name: 'United States' },
-  'GB': { currency: 'GBP', symbol: '£', rate: 0.79, name: 'United Kingdom' },
-  'EU': { currency: 'EUR', symbol: '€', rate: 0.92, name: 'Europe' },
   'IN': { currency: 'INR', symbol: '₹', rate: 83, name: 'India' },
-  'CA': { currency: 'CAD', symbol: 'C$', rate: 1.35, name: 'Canada' },
-  'AU': { currency: 'AUD', symbol: 'A$', rate: 1.52, name: 'Australia' },
-  'JP': { currency: 'JPY', symbol: '¥', rate: 150, name: 'Japan' },
-  'CN': { currency: 'CNY', symbol: '¥', rate: 7.2, name: 'China' },
-  'AE': { currency: 'AED', symbol: 'dh', rate: 3.67, name: 'UAE' },
-  'SG': { currency: 'SGD', symbol: 'S$', rate: 1.34, name: 'Singapore' },
   'Global': { currency: 'USD', symbol: '$', rate: 1, name: 'Global' }
 };
 
 const ServicesSection = () => {
+  const router = useRouter();
   const { countryCode, isLoading } = useLocation();
   const [currentRegion, setCurrentRegion] = useState('Global');
   const [showSpecs, setShowSpecs] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const filteredServices = services.filter(s =>
-    s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    s.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const [budget, setBudget] = useState<string>('');
 
   useEffect(() => {
-    if (!isLoading && countryCode) {
-      if (pricingData[countryCode]) {
-        setCurrentRegion(countryCode);
-      } else if (['DE', 'FR', 'IT', 'ES', 'NL'].includes(countryCode)) {
-        setCurrentRegion('EU');
-      } else {
-        setCurrentRegion('Global');
-      }
+    if (!isLoading && countryCode && pricingData[countryCode]) {
+      setCurrentRegion(countryCode);
     }
   }, [countryCode, isLoading]);
 
-  const formatPrice = (basePrice: number) => {
-    const data = pricingData[currentRegion] || pricingData['Global'];
-    const { currency, rate } = data;
-    const value = Math.round(basePrice * rate);
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(value);
+  const convertPrice = (value: number) => {
+    const region = pricingData[currentRegion] || pricingData['Global'];
+    const convertedValue = value * region.rate;
+    const currency = region.currency;
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(convertedValue);
   };
 
-  const scroll = (direction: 'left' | 'right') => {
-    const container = document.getElementById('services-carousel');
-    if (container) {
-      const scrollAmount = direction === 'left' ? -400 : 400;
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  const filteredServices = services.filter(s => {
+    if (!budget) return true;
+    const numericBudget = parseFloat(budget);
+    if (isNaN(numericBudget)) return true;
+    const region = pricingData[currentRegion] || pricingData['Global'];
+    // Compare in base price (₹ / USD)
+    return s.price <= (numericBudget / region.rate);
+  });
+
 
   return (
     <section id="services" className="w-full relative py-20 lg:py-32 overflow-hidden bg-[#fafafa]">
@@ -154,33 +156,61 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-primary/10 mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">Explore Our Skills</span>
+            <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in-up">
+              <Badge variant="outline" className="mb-6 border-primary/20 py-1.5 px-6 text-[10px] font-black tracking-[0.3em] uppercase text-primary/60 bg-primary/5">
+                Market Situation Analysis
+              </Badge>
+              <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tight mb-8">
+                Delivering{' '}
+                <span className="text-primary italic font-light">Astonishing</span> Results.
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
+                We analyze your business criteria and market situations to deploy major marketing automations and AI integrations that <span className="text-foreground font-bold">pivot your brand</span> to market leadership.
+              </p>
             </div>
-            <h2 className="font-headline text-4xl md:text-6xl font-black tracking-tighter mb-6 text-foreground">
-              Our <span className="text-primary italic font-light">Services </span>
-              <span className="text-muted-foreground/40 font-thin">List.</span>
-            </h2>
 
-            {/* Search Input for Tool Feel */}
-            <div className="relative max-w-md group">
-              <input
-                type="text"
-                placeholder="Search protocols (e.g. AI, Cloud, Security)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-12 bg-white border border-border rounded-xl px-12 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-              />
-              <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
-                  <Zap className="w-4 h-4" />
-                </button>
-              )}
+            {/* Pivot Hook: Budget Input */}
+            <div className="relative group w-full max-w-md animate-fade-in-up mt-8">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-orange-500/20 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div className="relative flex items-center bg-white border-2 border-border/60 rounded-2xl p-1 shadow-xl focus-within:border-primary/40 transition-all duration-500">
+                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-primary/5 text-primary ml-1">
+                  <Search className="w-5 h-5" />
+                </div>
+                <input
+                  type="number"
+                  placeholder="Enter your budget (e.g. 4000)..."
+                  className="flex-grow bg-transparent border-none focus:ring-0 px-4 py-3 text-lg font-black text-foreground placeholder:text-muted-foreground/40"
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                />
+                {budget && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="w-10 h-10 rounded-lg mr-1 hover:bg-red-50 text-red-400"
+                    onClick={() => setBudget('')}
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                )}
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mt-6 animate-fade-in-up [animation-delay:100ms]">
+              <Badge variant="outline" className="bg-white/50 border-border py-1 px-3 text-[8px] font-black uppercase tracking-widest text-muted-foreground/60">
+                ₹4k: Marketing
+              </Badge>
+              <Badge variant="outline" className="bg-white/50 border-border py-1 px-3 text-[8px] font-black uppercase tracking-widest text-muted-foreground/60">
+                ₹15k: AI Dashboard
+              </Badge>
+              <Badge variant="outline" className="bg-white/50 border-border py-1 px-3 text-[8px] font-black uppercase tracking-widest text-muted-foreground/60">
+                ₹20k: Software
+              </Badge>
             </div>
           </div>
+        </div>
 
+        <div className="flex justify-between items-center mb-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-border shadow-sm">
               <Button
@@ -200,52 +230,47 @@ const ServicesSection = () => {
                 Specs
               </Button>
             </div>
-            <div className="hidden lg:flex gap-2">
-              <Button size="icon" variant="outline" className="rounded-full border-border hover:bg-secondary transition-all" onClick={() => scroll('left')}>
-                <ArrowRight className="w-5 h-5 rotate-180" />
-              </Button>
-              <Button size="icon" variant="outline" className="rounded-full border-border hover:bg-secondary transition-all" onClick={() => scroll('right')}>
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </div>
           </div>
         </div>
 
-        {/* Carousel Container */}
+        {/* Services Grid Container */}
         <div
-          id="services-carousel"
-          className="flex flex-col lg:flex-row gap-6 lg:overflow-x-auto pb-12 lg:snap-x lg:snap-mandatory hide-scrollbar lg:touch-pan-x lg:overscroll-x-contain"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch'
-          }}
+          id="services-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-12"
         >
           {filteredServices.length > 0 ? (
             filteredServices.map((service, idx) => (
               <div
                 key={idx}
-                className="w-full lg:min-w-[480px] lg:snap-start"
+                className="w-full"
               >
                 {/* Desktop Card - stays vertical */}
-                <Card className="hidden lg:flex group h-[520px] bg-white border border-border/60 hover:border-primary/30 overflow-hidden relative transition-all duration-500 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] flex-col">
+                <Card 
+                  onClick={() => router.push(`/main/${service.slug}`)}
+                  className="hidden lg:flex group h-[520px] bg-white border border-border/60 hover:border-primary/30 overflow-hidden relative transition-all duration-500 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] flex-col cursor-pointer"
+                >
                   {/* Visual Header */}
                   <div className="h-48 relative overflow-hidden bg-slate-100">
                     <div className="absolute inset-0 z-0">
                       <img
-                        src={idx % 2 === 0 ? "/assets/nanotech_abstract_1_1772615413352.png" : "/assets/nanotech_curved_2_1772615432367.png"}
+                        src={service.image}
                         alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/5 to-transparent z-[1]" />
+                    <div className="absolute inset-0 bg-black/5 z-[1]" />
                     <div className={cn("absolute top-6 left-6 w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 z-[2]", service.accent)}>
                       {service.icon}
                     </div>
-                    <div className="absolute top-6 right-6 z-[2]">
+                    <div className="absolute top-6 right-6 z-[2] flex flex-col gap-2 items-end">
                       <Badge className="bg-white/90 backdrop-blur-md text-foreground border-border text-[9px] font-black py-1 px-3 uppercase tracking-widest shadow-sm">
                         Service {idx + 1}
                       </Badge>
+                      {service.title.includes('Marketing') && (
+                        <Badge className="bg-orange-500 text-white border-none text-[9px] font-black py-1 px-3 uppercase tracking-widest shadow-lg animate-pulse">
+                          Super Plan Active
+                        </Badge>
+                      )}
                     </div>
                   </div>
 
@@ -256,7 +281,7 @@ const ServicesSection = () => {
                           {service.title}
                         </h3>
                         <p className="text-primary font-black text-sm">
-                          {currentRegion === 'IN' ? '₹10k+' : `${formatPrice(service.price).split('.')[0]}+`}
+                          {currentRegion === 'IN' ? '₹10k+' : `${convertPrice(service.price).split('.')[0]}+`}
                         </p>
                       </div>
                       <p className="text-sm text-muted-foreground leading-relaxed font-medium">
@@ -295,7 +320,7 @@ const ServicesSection = () => {
                     </div>
 
                     <div className="flex items-center gap-3 pt-6">
-                      <Link href={`/specialty/${service.slug}`} className="flex-grow">
+                      <Link href={`/main/${service.slug}`} className="flex-grow">
                         <Button
                           className="w-full h-12 bg-foreground text-background hover:bg-primary hover:text-white transition-all duration-500 rounded-xl font-black uppercase tracking-widest text-[9px]"
                         >
@@ -319,7 +344,10 @@ const ServicesSection = () => {
                 </Card>
 
                 {/* Mobile Card - rectangular/horizontal */}
-                <Card className="flex lg:hidden group bg-white border border-border/60 p-4 gap-4 items-center rounded-2xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] mb-4">
+                <Card 
+                  onClick={() => router.push(`/main/${service.slug}`)}
+                  className="flex lg:hidden group bg-white border border-border/60 p-4 gap-4 items-center rounded-2xl shadow-sm hover:shadow-md transition-all active:scale-[0.98] mb-4 cursor-pointer"
+                >
                   <div className="flex-grow space-y-2">
                     <div className="flex justify-between items-center">
                       <h3 className="text-lg font-black tracking-tight text-foreground">
@@ -341,7 +369,7 @@ const ServicesSection = () => {
                       ))}
                     </div>
                     <div className="pt-2">
-                      <Link href={`/specialty/${service.slug}`}>
+                      <Link href={`/main/${service.slug}`}>
                         <Button size="sm" className="h-8 px-4 text-[9px] font-black uppercase tracking-widest bg-primary text-white rounded-lg">
                           Details
                         </Button>
@@ -360,29 +388,6 @@ const ServicesSection = () => {
             </div>
           )}
 
-          {/* Final Exploration Card */}
-          <div className="w-full lg:min-w-[320px] lg:snap-start flex items-center justify-center p-8 bg-white/50 backdrop-blur-md rounded-2xl border border-border/60 text-center">
-            <div className="space-y-6">
-              <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto border-2 border-primary/20 animate-breath">
-                <ArrowRight className="w-8 h-8 text-primary" />
-              </div>
-              <div>
-                <h4 className="font-bold text-xl text-foreground">Full Catalog</h4>
-                <p className="text-sm text-muted-foreground">Detailed Engineering Protocols</p>
-              </div>
-              <Button
-                variant="link"
-                className="text-primary font-black uppercase tracking-widest text-xs"
-                onClick={() => {
-                  window.dispatchEvent(new CustomEvent('delvare:autofill', {
-                    detail: { message: "Requesting comprehensive service ledger." }
-                  }));
-                }}
-              >
-                Request Ledger
-              </Button>
-            </div>
-          </div>
         </div>
 
         {/* Dynamic Tool Overlay Info */}
@@ -410,12 +415,10 @@ const ServicesSection = () => {
               size="lg"
               className="bg-primary hover:bg-primary/90 text-white rounded-xl shadow-lg shadow-primary/20 transition-all font-black uppercase tracking-widest text-[9px] px-8"
               onClick={() => {
-                window.dispatchEvent(new CustomEvent('delvare:autofill', {
-                  detail: { message: "I want to see the full list of services." }
-                }));
+                window.dispatchEvent(new CustomEvent('open-contact-form'));
               }}
             >
-              See All Services <Globe className="ml-2 w-4 h-4" />
+              Start Project <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
         </div>

@@ -6,12 +6,10 @@ import HeroSection from '@/components/sections/hero';
 import KeywordMarquee from '@/components/sections/keywords';
 import ServicesSection from '@/components/sections/services';
 import ProductsSection from '@/components/sections/products';
-import BlogSection from '@/components/sections/blog';
 
 import Footer from '@/components/footer';
 import BackgroundDecor from '@/components/background-decor';
-import FloatingActionDock from '@/components/floating-action-dock';
-import CodingLearningHub from '@/components/coding-learning-hub';
+import WhatsAppButton from '@/components/whatsapp-button';
 
 const CareerSection = dynamic(() => import('@/components/sections/careers'), {
   ssr: false,
@@ -23,15 +21,6 @@ const TechFeaturesSection = dynamic(() => import('@/components/sections/tech-fea
   loading: () => null,
 });
 
-const CostEstimatorSection = dynamic(() => import('@/components/sections/cost-estimator'), {
-  ssr: false,
-  loading: () => null,
-});
-
-const CatalogSection = dynamic(() => import('@/components/sections/catalog'), {
-  ssr: false,
-  loading: () => null,
-});
 
 const EcosystemSection = dynamic(() => import('@/components/sections/ecosystem'), {
   ssr: false,
@@ -49,7 +38,6 @@ const ClientsSection = dynamic(() => import('@/components/sections/clients'), {
 });
 
 import { useState } from 'react';
-import { QuotationPDFTemplate, CatalogPDFTemplate } from '@/components/printable-assets';
 
 export default function HomeClient() {
   const [quotationData, setQuotationData] = useState<any>(null);
@@ -68,18 +56,10 @@ export default function HomeClient() {
         <TechStackSection />
         <CareerSection />
         <TechFeaturesSection />
-        <CatalogSection />
-        <BlogSection />
 
-        <CostEstimatorSection />
-        <CodingLearningHub />
-        <FloatingActionDock />
         <Footer />
+        <WhatsAppButton />
       </main>
-
-      {/* Hidden PDF Templates for Generation */}
-      <QuotationPDFTemplate data={quotationData} />
-      <CatalogPDFTemplate />
     </div>
   );
 }

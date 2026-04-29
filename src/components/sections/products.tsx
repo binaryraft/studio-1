@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,56 +26,56 @@ import { cn } from '@/lib/utils';
 const highlights = [
     {
         icon: <ScanBarcode className="w-5 h-5" />,
-        label: 'Barcode Scanning',
+        label: 'Fast Scanning',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
     {
         icon: <FileText className="w-5 h-5" />,
-        label: 'GST Billing',
+        label: 'Easy Bills',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
     {
         icon: <Users className="w-5 h-5" />,
-        label: 'Multi-User',
+        label: 'Staff Accounts',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
     {
         icon: <BarChart3 className="w-5 h-5" />,
-        label: 'Live Analytics',
+        label: 'Profit Reports',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
     {
         icon: <ShieldCheck className="w-5 h-5" />,
-        label: 'Secure Cloud',
+        label: 'Safe Storage',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
     {
         icon: <Globe className="w-5 h-5" />,
-        label: 'Global Sync',
+        label: 'Works Everywhere',
         color: 'text-primary',
         bg: 'bg-primary/5',
     },
 ];
 
 const features = [
-    'Real-time inventory tracking across distributed stores',
-    'GST-compliant invoicing & billing systems',
-    'QR scan for instant product catalog retrieval',
-    'Comprehensive profit & loss analytic dashboards',
-    'Automated customer ledger & purchase management',
-    'Infinite SKU management with variant support',
+    'Track your items across all your shops easily',
+    'Create simple GST bills in just a few clicks',
+    'Scan barcodes to find products instantly',
+    'See how much profit you make every day',
+    'Keep track of your customers and payments',
+    'Add as many products as you want without worry',
 ];
 
 const stats = [
-    { value: '1M+', label: 'Digital Invoices', icon: <Receipt className="w-5 h-5 text-primary" /> },
-    { value: '99.9%', label: 'Systems Uptime', icon: <TrendingUp className="w-5 h-5 text-primary" /> },
-    { value: '<1s', label: 'Processing Speed', icon: <Clock className="w-5 h-5 text-primary" /> },
-    { value: 'Elite', label: 'Tier Infrastructure', icon: <Zap className="w-5 h-5 text-primary" /> },
+    { value: '1M+', label: 'Bills Made', icon: <Receipt className="w-5 h-5 text-primary" /> },
+    { value: '99.9%', label: 'Always Online', icon: <TrendingUp className="w-5 h-5 text-primary" /> },
+    { value: 'Fast', label: 'Processing Speed', icon: <Clock className="w-5 h-5 text-primary" /> },
+    { value: 'Elite', label: 'Best Systems', icon: <Zap className="w-5 h-5 text-primary" /> },
 ];
 
 const ProductsSection = () => {
@@ -107,18 +108,18 @@ const ProductsSection = () => {
                         className="mb-5 border-white/20 py-1.5 px-5 text-[10px] font-black tracking-[0.3em] uppercase text-white/60"
                     >
                         <Layers className="w-3 h-3 mr-2" />
-                        Signature Products
+                        Proprietary Platforms
                     </Badge>
                     <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tight mb-8">
-                        Engineering{' '}
+                        We Build{' '}
                         <span className="text-white/40 font-light italic">
-                            Distinction.
+                            Tools for You.
                         </span>
                     </h2>
                     <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/60 leading-relaxed font-medium">
-                        We deploy proprietary platforms alongside our service solutions. Introducing{' '}
+                        We don't just provide services—we build tools that help you run your business better. Meet{' '}
                         <span className="text-white font-bold border-b-2 border-white/20 pb-0.5">ECBills.in</span>,
-                        the definitive inventory and billing engine for modern enterprise.
+                        the easiest way to manage your shop's billing and items.
                     </p>
                 </div>
 
@@ -143,7 +144,7 @@ const ProductsSection = () => {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">
-                                            Enterprise Asset
+                                            Flagship Engine
                                         </p>
                                         <h3 className="text-4xl font-black tracking-tighter leading-none text-brand-dark">
                                             ECBills.in
@@ -152,7 +153,7 @@ const ProductsSection = () => {
                                 </div>
 
                                 <p className="text-muted-foreground text-lg leading-relaxed mb-10 font-medium italic">
-                                    "A comprehensive inventory and retail strategy platform designed to consolidate operations and scale intelligently."
+                                    "Consolidate your retail strategy with a platform designed for infinite scale and absolute precision."
                                 </p>
 
                                 {/* Feature Set */}
@@ -194,7 +195,7 @@ const ProductsSection = () => {
                                             new CustomEvent('delvare:autofill', {
                                                 detail: {
                                                     message:
-                                                        'Requesting an executive demo of the ECBills.in platform.',
+                                                        'Requesting a startup demo of the ECBills.in platform.',
                                                 },
                                             })
                                         );
@@ -233,7 +234,7 @@ const ProductsSection = () => {
                             {/* Logic Highlights */}
                             <div className="space-y-6">
                                 <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">
-                                    Engine Architecture
+                                    Startup Engine Architecture
                                 </p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {highlights.map((h, i) => (
@@ -258,11 +259,11 @@ const ProductsSection = () => {
 
                             {/* Trust Badge */}
                             <div className="mt-auto flex items-center gap-4 px-6 py-5 rounded-2xl bg-primary/[0.03] border border-primary/10">
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0">
-                                    <Zap className="w-5 h-5 text-primary" />
+                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm shrink-0 font-black text-[10px] text-primary">
+                                    AB
                                 </div>
                                 <p className="text-sm text-muted-foreground font-medium italic">
-                                    Developed on the <span className="text-foreground font-bold">Delvare Core</span> — high-availability architecture for high-stakes retail.
+                                    Architected by <Link href="/portfolio/founder" className="text-foreground font-bold hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4">Alfas B.</Link> — high-availability systems for fast-growing startups.
                                 </p>
                             </div>
                         </div>

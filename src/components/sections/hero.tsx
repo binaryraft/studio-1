@@ -63,60 +63,44 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={heroRef} id="hero" className="relative w-full min-h-[110vh] flex items-center justify-center overflow-hidden bg-background">
+    <section ref={heroRef} id="hero" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-white">
 
-      {/* --- Upscale Background Effects --- */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] opacity-80" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[700px] h-[700px] bg-slate-400/10 rounded-full blur-[120px] opacity-60 delay-1000" />
-      </div>
+      {/* --- Minimalist Background --- */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.1]" />
 
-      {/* --- Refined Minimal Grid --- */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:60px_60px]" />
-
-      <div className="container relative z-10 px-4 pt-20">
+      <div className="container relative z-10 px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left Column: Typography & CTA */}
           <div className="space-y-8 text-center lg:text-left animate-slide-in-left">
 
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border shadow-sm backdrop-blur-md animate-fade-in-up [animation-delay:100ms] opacity-0">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 animate-fade-in-up [animation-delay:100ms] opacity-0">
               <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-widest text-primary">
-                Better Business & Technology
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                Smart Tech. Real Results.
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-headline font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[1.05] text-foreground animate-fade-in-up [animation-delay:200ms] opacity-0">
-              <span className="text-primary drop-shadow-[0_0_20px_rgba(16,185,129,0.3)] motion-safe:animate-pulse">Grow Your Business</span>
+            <h1 className="font-headline font-black text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-foreground animate-fade-in-up [animation-delay:200ms] opacity-0">
+              Make Your
               <br />
-              <span className="text-muted-foreground font-light tracking-tight">
-                With Simple Tech
-              </span>
-              <span className="text-primary">.</span>
+              <span className="text-primary italic">Business Better</span>
+              <br />
+              with Simple Tech<span className="text-primary">.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="max-w-xl mx-auto lg:mx-0 text-lg md:text-xl text-muted-foreground font-medium leading-relaxed animate-fade-in-up [animation-delay:300ms] opacity-0">
-              We help you build better businesses with <span className="text-primary font-bold">simple AI</span>, <span className="text-primary font-bold">fast cloud systems</span>, and <span className="text-primary font-bold">24/7 security</span>. We make technology work for you, so you can focus on yours.
+              We build the apps, websites, and smart tools you need to grow—<span className="text-primary font-bold">without the headache</span>.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start pt-6 animate-fade-in-up [animation-delay:400ms] opacity-0">
               <Button
                 size="xl"
-                className="h-16 px-10 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
-                onClick={() => window.dispatchEvent(new CustomEvent('open-estimator'))}
-              >
-                Price Calculator
-                <Sparkles className="ml-2 w-5 h-5 group-hover:rotate-12 transition-transform" />
-              </Button>
-              <Button
-                size="xl"
-                variant="outline"
-                className="h-16 px-10 text-lg font-bold bg-white text-foreground border-border hover:bg-secondary hover:border-border/80 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="h-16 px-12 text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group"
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Our Services

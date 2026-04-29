@@ -153,6 +153,14 @@ const Header = () => {
                     if (link.name === 'Careers') {
                       e.preventDefault();
                       toggleForm('career');
+                    } else if (link.href.startsWith('#')) {
+                      e.preventDefault();
+                      const element = document.getElementById(link.href.substring(1));
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = '/' + link.href;
+                      }
                     }
                   }}
                 >
@@ -199,12 +207,12 @@ const Header = () => {
                     <div className="space-y-4">
                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Priority Contact</span>
                       <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-foreground leading-none">
-                        {formType === 'contact' ? "Direct Executive Access." : "Join the Collective."}
+                        {formType === 'contact' ? "Direct Access to Experts." : "Join Our Team."}
                       </h2>
                       <p className="text-muted-foreground font-semibold italic text-lg leading-relaxed pt-4">
                         {formType === 'contact'
-                          ? "Connect with our engineering lead to discuss your specific infrastructure or software requirements."
-                          : "We are seeking elite talent to join our distributed engineering networks. Submit your credentials."}
+                          ? "Talk directly to our tech leads about your custom software or security needs."
+                          : "We're looking for elite talent to help us build the next generation of business tools."}
                       </p>
                     </div>
                     <div className="p-8 rounded-[2rem] bg-secondary/50 border border-border">
@@ -297,41 +305,62 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Classy Mobile Navigation Drawer */}
+      {/* Backdrop */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm transition-opacity duration-500 lg:hidden",
+          menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+        onClick={() => setMenuOpen(false)}
+      />
+
       <div className={cn(
-        "fixed inset-0 z-[100] bg-brand-dark transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] lg:hidden",
+        "fixed top-0 right-0 bottom-0 z-[100] w-[85vw] max-w-sm bg-white/95 backdrop-blur-xl border-l border-white/20 shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] lg:hidden overflow-y-auto",
         menuOpen ? "translate-x-0" : "translate-x-full"
       )}>
-        <div className="container mx-auto px-6 flex flex-col h-full uppercase">
-          <div className="flex justify-between items-center h-24">
-            <Logo simple light variant="header" />
-            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)} className="rounded-full bg-white/5 text-white">
-              <X className="w-8 h-8" />
+        <div className="flex flex-col h-full uppercase px-8 py-10">
+          <div className="flex justify-between items-center mb-16">
+            <Logo simple variant="header" />
+            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)} className="rounded-full bg-secondary/50 text-foreground hover:bg-secondary">
+              <X className="w-5 h-5" />
             </Button>
           </div>
-          <nav className="flex flex-col items-start justify-center flex-grow gap-8 py-10">
+          <nav className="flex flex-col items-start justify-center gap-8 mb-16">
             {navLinks.map((link, idx) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-5xl font-black tracking-tighter text-white hover:text-primary transition-all duration-300"
+                className="text-2xl font-black tracking-tight text-foreground/80 hover:text-primary transition-all duration-300 relative group"
                 onClick={(e) => {
                   if (link.name === 'Careers') {
                     e.preventDefault();
                     toggleForm('career');
                     setMenuOpen(false);
+                  } else if (link.href.startsWith('#')) {
+                    e.preventDefault();
+                    setMenuOpen(false);
+                    setTimeout(() => {
+                      const element = document.getElementById(link.href.substring(1));
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        window.location.href = '/' + link.href;
+                      }
+                    }, 500);
                   } else {
                     setMenuOpen(false);
                   }
                 }}
               >
                 {link.name}
+                <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
-          <div className="pb-12">
-            <Button size="xl" className="w-full h-16 text-xs font-black bg-primary text-white rounded-xl uppercase tracking-widest shadow-2xl" onClick={() => { toggleForm('contact'); setMenuOpen(false); }}>
-              Start Now
+          <div className="mt-auto pb-8">
+            <Button size="xl" className="w-full h-14 text-[10px] font-black bg-primary text-white rounded-xl uppercase tracking-[0.2em] shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all" onClick={() => { toggleForm('contact'); setMenuOpen(false); }}>
+              Start Project
             </Button>
           </div>
         </div>

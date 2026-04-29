@@ -11,9 +11,9 @@ const technologies = [
     { name: 'React', icon: 'https://cdn.simpleicons.org/react/61DAFB' },
     { name: 'Node.js', icon: 'https://cdn.simpleicons.org/nodedotjs/339933' },
     { name: 'Flutter', icon: 'https://cdn.simpleicons.org/flutter/02569B' },
-    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonwebservices/232F3E' },
-    { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776AB' },
-    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai/000000' },
+    { name: 'AWS', icon: 'https://cdn.simpleicons.org/amazonaws' },
+    { name: 'Python', icon: 'https://cdn.simpleicons.org/python' },
+    { name: 'OpenAI', icon: 'https://cdn.simpleicons.org/openai' },
 ];
 
 const clients = [
@@ -36,11 +36,11 @@ const EcosystemSection = () => {
                                 Asset & Partnerships
                             </Badge>
                             <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-foreground leading-[0.9]">
-                                The Elite <br />
+                                Our Global <br />
                                 <span className="text-primary italic font-light">Ecosystem.</span>
                             </h2>
                             <p className="text-muted-foreground text-lg font-medium italic">
-                                "Our past clients and core assets are the foundation of our engineering excellence."
+                                "The partnerships and tools that form the backbone of our success."
                             </p>
                         </div>
 
@@ -100,7 +100,7 @@ const EcosystemSection = () => {
                                                 <img
                                                     src={tech.icon}
                                                     alt={tech.name}
-                                                    className="w-8 h-8 md:w-9 md:h-9 object-contain grayscale opacity-60 group-hover/tech:grayscale-0 group-hover/tech:opacity-100 transition-all"
+                                                    className="w-8 h-8 md:w-9 md:h-9 object-contain grayscale-0 opacity-100 group-hover/tech:scale-110 transition-all duration-300"
                                                 />
                                             </div>
                                             <span className="text-[9px] font-black tracking-widest uppercase text-muted-foreground/40 group-hover/tech:text-primary transition-colors">

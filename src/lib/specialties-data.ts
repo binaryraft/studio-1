@@ -1,170 +1,211 @@
+import { Cloud, Brain, Layout, ShieldCheck, LifeBuoy, GitBranch, Zap, MessageSquare, Code2, Search, TrendingUp, Smartphone, Globe, BarChart3, Rocket, LineChart } from 'lucide-react';
+
 export const specialties = [
     {
-        slug: "cloud-hosting",
-        title: "Cloud Servers",
-        description: "Reliable servers that stay online 24/7 and load your site fast across the globe.",
-        detailedDescription: "Our cloud servers are built for businesses that need to be online all the time. We use smart systems to make sure your website never goes down, even if many people visit at once. With fast loading everywhere, your customers will always have a great experience.",
+        slug: "seo-optimization",
+        title: "Marketing & SEO Agency",
+        description: "We introduce tools to automate digital marketing, SEO, and outreach.",
+        detailedDescription: "We have experience with automating services, integrating AI systems, and function handling techniques to automate marketing. We also use elite tools and services and provide extensive support regarding all digital outreach and SEO campaigns. We pivot your brand to market leadership.",
         features: [
-            "99.99% Online Guarantee",
-            "Fast Global Loading",
-            "Automatic Scaling",
-            "Strong Hacker Protection",
-            "Managed Systems",
-            "Daily Secure Backups"
+            "Automated Marketing Tools",
+            "AI System Integration",
+            "SEO & Outreach Automation",
+            "Function Handling Techniques",
+            "Market Dominance Strategy",
+            "Elite Campaign Support"
         ],
-        icon: "Cloud",
-        accent: "bg-blue-500",
+        icon: "TrendingUp",
+        accent: "bg-orange-500",
+        image: "/assets/services/seo.png",
+        portfolioImages: ["/assets/services/seo.png", "/assets/projects/p2.png", "/assets/projects/p3.png"],
         stats: [
-            { label: "Uptime", value: "99.99%" },
-            { label: "Speed", value: "Very Fast" },
-            { label: "Security", value: "High Tier" }
+            { label: "Outreach", value: "Automated" },
+            { label: "Growth", value: "Exponential" },
+            { label: "SEO Setup", value: "AI-Driven" }
+        ]
+    },
+    {
+        slug: "business-analyst",
+        title: "Business Analyst",
+        description: "Analyzing financial and economic factors to ideate further.",
+        detailedDescription: "We participate in boards and ideate further with our support and vision. We specialize in analyzing financial, economic, strategic growth modeling, risk assessment, and market forecasting to ensure your startup reaches its maximum potential.",
+        features: [
+            "Financial & Economic Analysis",
+            "Strategic Growth Modeling",
+            "Risk Assessment",
+            "Market Forecasting",
+            "Board Participation",
+            "Vision & Ideation"
+        ],
+        icon: "LineChart",
+        accent: "bg-yellow-500",
+        image: "/assets/services/support.png",
+        portfolioImages: ["/assets/services/support.png", "/assets/projects/p1.png", "/assets/projects/p2.png"],
+        stats: [
+            { label: "Forecasting", value: "Accurate" },
+            { label: "Analysis", value: "In-Depth" },
+            { label: "Strategy", value: "Proven" }
+        ]
+    },
+    {
+        slug: "software-engineering",
+        title: "Software Engineering",
+        description: "Your idea, our engineering, together we share flight.",
+        detailedDescription: "Expertise in various and emerging frameworks for business, startups, and Product-as-a-Service (PaaS) systems. We build robust, scalable architectures. Your idea, our engineering, together we share flight.",
+        features: [
+            "Emerging Frameworks",
+            "Startup & Business Logic",
+            "PaaS Architecture",
+            "Custom App Development",
+            "High-Availability Systems",
+            "Shared Flight Ideology"
+        ],
+        icon: "Code2",
+        accent: "bg-blue-600",
+        image: "/assets/services/software.png",
+        portfolioImages: ["/assets/services/software.png", "/assets/projects/p3.png", "/assets/projects/p1.png"],
+        stats: [
+            { label: "Scale", value: "Infinite" },
+            { label: "Systems", value: "PaaS Ready" },
+            { label: "Support", value: "Elite" }
+        ]
+    },
+    {
+        slug: "ai-dashboard",
+        title: "AI Integrated Dashboards",
+        description: "We interconnect your systems and let AI handle simple tasks.",
+        detailedDescription: "We interconnect your systems and its functions, letting AI handle simple tasks like automations and data synchronization. An enterprise-grade oversight tool for startups to maintain total control with zero manual effort.",
+        features: [
+            "System Interconnection",
+            "Automated Task Handling",
+            "Function Syncing",
+            "Predictive Alerts",
+            "Enterprise Oversight",
+            "Zero Manual Effort"
+        ],
+        icon: "BarChart3",
+        accent: "bg-indigo-600",
+        image: "/assets/projects/p2.png",
+        portfolioImages: ["/assets/projects/p2.png", "/assets/projects/p1.png", "/assets/projects/p3.png"],
+        stats: [
+            { label: "Integration", value: "Seamless" },
+            { label: "Tasks", value: "Automated" },
+            { label: "Oversight", value: "Total" }
         ]
     },
     {
         slug: "ai-ecosystems",
-        title: "AI Solutions",
-        description: "Custom AI tools and smart automation to help your business grow faster.",
-        detailedDescription: "We build AI that actually works for your business. From smart chat bots that talk to your customers to systems that predict your next big sale, we help you use data to make more money and save time. We don't just use AI; we build it specifically for what you need.",
+        title: "AI & Automation",
+        description: "Focuses on training, tuning and automating functions.",
+        detailedDescription: "We focus on training, tuning, and automating functions using advanced LLM fine-tuning, RAG (Retrieval-Augmented Generation), neural networks, and hyperparameter optimization to build intelligent, autonomous ecosystems.",
         features: [
-            "Custom AI Chat Bots",
-            "Smart Data Analysis",
-            "Automatic Tasking",
-            "Image Recognition",
-            "Language Translation",
-            "Fast AI Processing"
+            "LLM Fine-Tuning",
+            "RAG Implementation",
+            "Hyperparameter Optimization",
+            "Neural Network Training",
+            "Autonomous Workflows",
+            "Function Automation"
         ],
         icon: "Brain",
-        accent: "bg-purple-500",
+        accent: "bg-purple-600",
+        image: "/assets/services/ai.png",
+        portfolioImages: ["/assets/services/ai.png", "/assets/projects/p1.png", "/assets/projects/p2.png"],
         stats: [
-            { label: "Models", value: "Custom" },
-            { label: "Accuracy", value: "High" },
-            { label: "Insights", value: "Real-time" }
+            { label: "Models", value: "Tuned" },
+            { label: "RAG", value: "Integrated" },
+            { label: "Autonomy", value: "High" }
         ]
     },
     {
         slug: "software-design",
-        title: "Web & App Design",
-        description: "Beautiful, fast websites and mobile apps built with modern technology.",
-        detailedDescription: "We build websites and apps that not only look amazing but work perfectly. Using the latest tools, we create platforms that are easy to use and can grow as your business grows. Your code will be clean, fast, and ready for anything.",
+        title: "UI/UX Design",
+        description: "Share your brand's value with Delvare UI/UX psychology.",
+        detailedDescription: "This calls for brands to share their value with Delvare UI/UX psychology. We implement cognitive load reduction, heuristic evaluation, conversion rate optimization, and intuitive micro-interactions to create perfect digital experiences.",
         features: [
-            "Modern Web Apps",
-            "Mobile Apps for All",
-            "Search Engine Ready",
-            "Fast API Connections",
-            "Real-time Updates",
-            "Clean & Safe Code"
+            "UI/UX Psychology",
+            "Cognitive Load Reduction",
+            "Heuristic Evaluation",
+            "Conversion Optimization",
+            "Micro-Interactions",
+            "Brand Value Integration"
         ],
         icon: "Layout",
         accent: "bg-emerald-500",
+        image: "/assets/services/design.png",
+        portfolioImages: ["/assets/services/design.png", "/assets/projects/p1.png", "/assets/projects/p2.png"],
         stats: [
-            { label: "Growth", value: "Easy" },
-            { label: "Tech", value: "Modern" },
-            { label: "Speed", value: "Maximized" }
+            { label: "Cognitive Load", value: "Low" },
+            { label: "Conversion", value: "Optimized" },
+            { label: "Experience", value: "Psychological" }
+        ]
+    },
+    {
+        slug: "cloud-hosting",
+        title: "Cloud Solutions",
+        description: "Manage, migrate, and start cloud systems for business efficiency.",
+        detailedDescription: "We help manage, migrate, and start cloud systems for business efficiency and connectivity. From setting up the initial architecture to ongoing maintenance, we ensure your startup is always online, secure, and fast.",
+        features: [
+            "Cloud Migration",
+            "System Management",
+            "Architecture Setup",
+            "Business Efficiency",
+            "High Connectivity",
+            "Always Online"
+        ],
+        icon: "Cloud",
+        accent: "bg-cyan-500",
+        image: "/assets/services/cloud.png",
+        portfolioImages: ["/assets/services/cloud.png", "/assets/projects/p3.png", "/assets/projects/p1.png"],
+        stats: [
+            { label: "Migration", value: "Smooth" },
+            { label: "Efficiency", value: "High" },
+            { label: "Uptime", value: "99.9%" }
         ]
     },
     {
         slug: "cyber-security",
-        title: "Business Security",
-        description: "Total protection for your data and customers with advanced security tools.",
-        detailedDescription: "Keeping your digital business safe is our top priority. We set up strong walls around your data so hackers can't get in. From testing your site for weak spots to locking down every piece of info, we make sure your business is safe from every angle.",
+        title: "Cyber Security",
+        description: "Analyse testing, training and tuning AI models securely.",
+        detailedDescription: "Our cyber security division helps analyze testing, training, and tuning AI models in systems. We perform rigorous security scans, penetration testing, and other services to guarantee zero vulnerabilities in your startup's infrastructure.",
         features: [
-            "Secure Access Control",
-            "End-to-End Encryption",
-            "Safe Testing Protocols",
-            "Emergency Planning",
-            "Identity Protection",
-            "24/7 Security Scans"
+            "AI Model Security",
+            "Vulnerability Scans",
+            "Penetration Testing",
+            "Zero-Trust Auth",
+            "System Analysis",
+            "Threat Mitigation"
         ],
         icon: "ShieldCheck",
-        accent: "bg-red-500",
+        accent: "bg-red-600",
+        image: "/assets/services/security.png",
+        portfolioImages: ["/assets/services/security.png", "/assets/projects/p2.png", "/assets/projects/p3.png"],
         stats: [
-            { label: "Defense", value: "Strong" },
-            { label: "Safety", value: "Verified" },
-            { label: "Monitoring", value: "Global" }
+            { label: "Threats", value: "Mitigated" },
+            { label: "Scans", value: "Rigorous" },
+            { label: "AI Models", value: "Secured" }
         ]
     },
     {
         slug: "technical-sla",
-        title: "Always-On Support",
-        description: "Full maintenance and 24/7 support so you never have to worry about tech.",
-        detailedDescription: "We take care of the tech so you don't have to. Our support team watches your systems all day and all night. If something goes wrong, we fix it before you even notice. We keep everything updated and running at top speed.",
+        title: "Managed Support",
+        description: "Handle, business consultancy, analysis and our stake.",
+        detailedDescription: "We provide comprehensive managed support: we handle technical issues, offer business consultancy, perform analysis, and share our stake in your scenario to ensure mutual growth and stability.",
         features: [
-            "24/7 Support Center",
-            "Proactive Updates",
-            "15-Minute Response",
-            "Speed Optimization",
-            "Monthly Reports",
-            "Dedicated Tech Team"
+            "Business Consultancy",
+            "Scenario Analysis",
+            "Technical Handling",
+            "Mutual Growth Stake",
+            "24/7 Availability",
+            "Strategic Support"
         ],
         icon: "LifeBuoy",
         accent: "bg-amber-500",
+        image: "/assets/services/support.png",
+        portfolioImages: ["/assets/services/support.png", "/assets/projects/p1.png", "/assets/projects/p2.png"],
         stats: [
-            { label: "Response", value: "<15min" },
+            { label: "Consultancy", value: "Strategic" },
             { label: "Support", value: "24/7" },
-            { label: "Care", value: "Elite" }
-        ]
-    },
-    {
-        slug: "legacy-migration",
-        title: "Old System Updates",
-        description: "Moving your old software to the modern cloud without losing any data.",
-        detailedDescription: "Don't let old programs slow you down. We help you move your old software to the modern cloud. We keep all your important data safe while making your systems faster, safer, and easier to use on phones and computers.",
-        features: [
-            "Database Cleanup",
-            "Move to Cloud",
-            "No Downtime",
-            "New API Connections",
-            "Safe Data Transfer",
-            "Lower Tech Costs"
-        ],
-        icon: "GitBranch",
-        accent: "bg-indigo-500",
-        stats: [
-            { label: "Downtime", value: "Zero" },
-            { label: "Safety", value: "100%" },
-            { label: "Speed", value: "Faster" }
-        ]
-    },
-    {
-        slug: "system-update",
-        title: "Ongoing Updates",
-        description: "Regular updates to keep your site fast, safe, and full of new features.",
-        detailedDescription: "Technology changes fast, and we make sure your business stays ahead. We send out regular updates that group together new features and security fixes. Your site stays modern and fast without any effort from you.",
-        features: [
-            "Automatic Updates",
-            "New Feature Add-ons",
-            "Security Patches",
-            "Better Performance",
-            "Mobile Ready Upgrades",
-            "Modern Look Refreshes"
-        ],
-        icon: "Zap",
-        accent: "bg-yellow-500",
-        stats: [
-            { label: "Growth", value: "Regular" },
-            { label: "Stability", value: "Static" },
-            { label: "Updates", value: "Weekly" }
-        ]
-    },
-    {
-        slug: "technical-consulting",
-        title: "Business Consulting",
-        description: "Expert talk to help you plan your business growth with technology.",
-        detailedDescription: "Good planning leads to great success. We work with you to understand your goals and find the best technology to reach them. From saving money on tech to building a plan for the next five years, we give you clear advice.",
-        features: [
-            "System Audits",
-            "Tech Planning",
-            "Cost Saving Advice",
-            "Growth Strategy",
-            "Clear Reporting",
-            "Expert Guidance"
-        ],
-        icon: "MessageSquare",
-        accent: "bg-cyan-500",
-        stats: [
-            { label: "Advice", value: "Expert" },
-            { label: "Strategy", value: "Clear" },
-            { label: "Results", value: "Driven" }
+            { label: "Analysis", value: "Ongoing" }
         ]
     }
 ];
